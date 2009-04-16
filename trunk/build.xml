@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="pivot-jfree" default="build">
+    <property name="folder.bin" value="ant-bin"/>
+    <property name="folder.lib" value="lib"/>
+
+    <target name="build">
+        <mkdir dir="jfree/${folder.bin}"/>
+        <javac srcdir="jfree/src"
+            destDir="jfree/${folder.bin}"
+            optimize="true"
+            deprecation="true"
+            debug="false"
+            target="1.5"
+            encoding="UTF-8"
+            failonerror="true">
+            <compilerarg value="-Xlint"/>
+            <classpath>
+                <fileset dir="jfree/lib" includes="**/*.jar"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="package" depends="build">
+        <mkdir dir="${folder.lib}"/>
+        <jar jarfile="${folder.lib}/${ant.project.name}.jar">
+            <fileset dir="jfree/${folder.bin}"/>
+            <fileset dir="jfree/src">
+                <exclude name="**/*.java"/>
+                <exclude name="**/package.html"/>
+            </fileset>
+        </jar>
+    </target>
+
+    <target name="clean">
+        <delete dir="jfree/${folder.bin}"/>
+        <delete file="${folder.lib}/${ant.project.name}.jar"/>
+    </target>
+</project>
