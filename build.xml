@@ -34,6 +34,6 @@
 
     <target name="clean">
         <delete dir="jfree/${folder.bin}"/>
-        <delete file="${folder.lib}/${ant.project.name}.jar"/>
+        <delete dir="${folder.lib}"/>
     </target>
 </project>
