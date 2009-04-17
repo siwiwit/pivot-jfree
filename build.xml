@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="pivot-jfree" default="build">
+<project name="pivot" default="build">
     <property name="folder.bin" value="ant-bin"/>
     <property name="folder.lib" value="lib"/>
+
+    <property file="build.properties"/>
 
     <target name="build">
         <mkdir dir="jfree/${folder.bin}"/>
@@ -23,7 +25,7 @@
 
     <target name="package" depends="build">
         <mkdir dir="${folder.lib}"/>
-        <jar jarfile="${folder.lib}/${ant.project.name}.jar">
+        <jar jarfile="${folder.lib}/${ant.project.name}-charts.jfree-${version}.jar">
             <fileset dir="jfree/${folder.bin}"/>
             <fileset dir="jfree/src">
                 <exclude name="**/*.java"/>
@@ -35,5 +37,20 @@
     <target name="clean">
         <delete dir="jfree/${folder.bin}"/>
         <delete dir="${folder.lib}"/>
+    </target>
+
+    <!-- Remove trailing white space in all source files -->
+    <target name="trim-whitespace">
+        <replaceregexp match="[\t ]+$" replace="" flags="gm" byline="true">
+            <fileset dir=".">
+                <include name="**/*.java"/>
+                <include name="**/*.html"/>
+                <include name="**/*.txt"/>
+                <include name="**/*.properties"/>
+                <include name="**/*.xml"/>
+                <include name="**/*.wtkx"/>
+                <include name="**/*.json"/>
+            </fileset>
+        </replaceregexp>
     </target>
 </project>
