@@ -13,30 +13,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package pivot.charts.skin;
+package pivot.charts.skin.jfree;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.entity.CategoryItemEntity;
 import org.jfree.chart.entity.ChartEntity;
 import org.jfree.chart.entity.XYItemEntity;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.CategoryDataset;
 
+import pivot.charts.AreaChartView;
 import pivot.charts.ChartView;
-import pivot.charts.HighLowChartView;
 import pivot.collections.List;
 
 /**
- * High/low chart view skin.
+ * Area chart view skin.
  *
  * @author gbrown
  */
-public class HighLowChartViewSkin extends ChartViewSkin {
-    private boolean candlestick = false;
-
+public class AreaChartViewSkin extends ChartViewSkin {
     public ChartView.Element getElementAt(int x, int y) {
         ChartView.Element element = null;
 
         ChartEntity chartEntity = getChartEntityAt(x, y);
-        if (chartEntity instanceof XYItemEntity) {
+        if (chartEntity instanceof CategoryItemEntity) {
+            CategoryItemEntity categoryItemEntity = (CategoryItemEntity)chartEntity;
+            CategoryDataset dataset = categoryItemEntity.getDataset();
+
+            String columnKey = (String)categoryItemEntity.getColumnKey();
+            int columnIndex = dataset.getColumnIndex(columnKey);
+
+            String rowKey = (String)categoryItemEntity.getRowKey();
+            int rowIndex = dataset.getRowIndex(rowKey);
+
+            element = new ChartView.Element(rowIndex, columnIndex);
+        } else if (chartEntity instanceof XYItemEntity) {
             XYItemEntity xyItemEntity = (XYItemEntity)chartEntity;
             element = new ChartView.Element(xyItemEntity.getSeriesIndex(),
                 xyItemEntity.getItem());
@@ -47,7 +59,7 @@ public class HighLowChartViewSkin extends ChartViewSkin {
 
     @Override
     protected JFreeChart createChart() {
-        HighLowChartView chartView = (HighLowChartView)getComponent();
+        AreaChartView chartView = (AreaChartView)getComponent();
 
         String title = chartView.getTitle();
         String horizontalAxisLabel = chartView.getHorizontalAxisLabel();
@@ -58,25 +70,17 @@ public class HighLowChartViewSkin extends ChartViewSkin {
         List<?> chartData = chartView.getChartData();
 
         JFreeChart chart;
-        OHLCSeriesDataset dataset = new OHLCSeriesDataset(seriesNameKey, chartData);
-
-        if (candlestick) {
-            chart = ChartFactory.createCandlestickChart(title,
-                horizontalAxisLabel, verticalAxisLabel, dataset, showLegend);
+        ChartView.CategorySequence categories = chartView.getCategories();
+        if (categories.getLength() > 0) {
+            CategorySeriesDataset dataset = new CategorySeriesDataset(categories, seriesNameKey, chartData);
+            chart = ChartFactory.createAreaChart(title, horizontalAxisLabel, verticalAxisLabel,
+                dataset, PlotOrientation.VERTICAL, showLegend, false, false);
         } else {
-            chart = ChartFactory.createHighLowChart(title,
-                horizontalAxisLabel, verticalAxisLabel, dataset, showLegend);
+            chart = ChartFactory.createXYAreaChart(title, horizontalAxisLabel, verticalAxisLabel,
+                new XYSeriesDataset(seriesNameKey, chartData),
+                PlotOrientation.VERTICAL, showLegend, false, false);
         }
 
         return chart;
-    }
-
-    public boolean isCandlestick() {
-        return candlestick;
-    }
-
-    public void setCandlestick(boolean candlestick) {
-        this.candlestick = candlestick;
-        repaintComponent();
     }
 }

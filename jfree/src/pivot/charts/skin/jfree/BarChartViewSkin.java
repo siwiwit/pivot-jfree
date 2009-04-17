@@ -13,26 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package pivot.charts.skin;
+package pivot.charts.skin.jfree;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.entity.CategoryItemEntity;
 import org.jfree.chart.entity.ChartEntity;
+import org.jfree.chart.entity.CategoryItemEntity;
 import org.jfree.chart.entity.XYItemEntity;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 
-import pivot.charts.AreaChartView;
+import pivot.charts.BarChartView;
 import pivot.charts.ChartView;
 import pivot.collections.List;
 
 /**
- * Area chart view skin.
+ * Bar chart view skin.
  *
  * @author gbrown
  */
-public class AreaChartViewSkin extends ChartViewSkin {
+public class BarChartViewSkin extends ChartViewSkin {
+    private boolean stacked = false;
+    private boolean threeDimensional = false;
+
     public ChartView.Element getElementAt(int x, int y) {
         ChartView.Element element = null;
 
@@ -57,9 +60,8 @@ public class AreaChartViewSkin extends ChartViewSkin {
         return element;
     }
 
-    @Override
     protected JFreeChart createChart() {
-        AreaChartView chartView = (AreaChartView)getComponent();
+        BarChartView chartView = (BarChartView)getComponent();
 
         String title = chartView.getTitle();
         String horizontalAxisLabel = chartView.getHorizontalAxisLabel();
@@ -69,18 +71,51 @@ public class AreaChartViewSkin extends ChartViewSkin {
         String seriesNameKey = chartView.getSeriesNameKey();
         List<?> chartData = chartView.getChartData();
 
+        // TODO Make plot orientation a style property
+
         JFreeChart chart;
         ChartView.CategorySequence categories = chartView.getCategories();
         if (categories.getLength() > 0) {
             CategorySeriesDataset dataset = new CategorySeriesDataset(categories, seriesNameKey, chartData);
-            chart = ChartFactory.createAreaChart(title, horizontalAxisLabel, verticalAxisLabel,
-                dataset, PlotOrientation.VERTICAL, showLegend, false, false);
+
+            if (stacked && threeDimensional) {
+                chart = ChartFactory.createStackedBarChart3D(title, horizontalAxisLabel, verticalAxisLabel,
+                    dataset, PlotOrientation.VERTICAL, showLegend, false, false);
+            } else if (stacked) {
+                chart = ChartFactory.createStackedBarChart(title, horizontalAxisLabel, verticalAxisLabel,
+                    dataset, PlotOrientation.VERTICAL, showLegend, false, false);
+            } else if (threeDimensional) {
+                chart = ChartFactory.createBarChart3D(title, horizontalAxisLabel, verticalAxisLabel,
+                    dataset, PlotOrientation.VERTICAL, showLegend, false, false);
+            } else {
+                chart = ChartFactory.createBarChart(title, horizontalAxisLabel, verticalAxisLabel,
+                    dataset, PlotOrientation.VERTICAL, showLegend, false, false);
+            }
         } else {
-            chart = ChartFactory.createXYAreaChart(title, horizontalAxisLabel, verticalAxisLabel,
-                new XYSeriesDataset(seriesNameKey, chartData),
+            // TODO Make the dateAxis argument a style property
+            chart = ChartFactory.createXYBarChart(title, horizontalAxisLabel, false, verticalAxisLabel,
+                new IntervalSeriesDataset(seriesNameKey, chartData),
                 PlotOrientation.VERTICAL, showLegend, false, false);
         }
 
         return chart;
+    }
+
+    public boolean isStacked() {
+        return stacked;
+    }
+
+    public void setStacked(boolean stacked) {
+        this.stacked = stacked;
+        repaintComponent();
+    }
+
+    public boolean isThreeDimensional() {
+        return threeDimensional;
+    }
+
+    public void setThreeDimensional(boolean threeDimensional) {
+        this.threeDimensional = threeDimensional;
+        repaintComponent();
     }
 }
