@@ -2,14 +2,19 @@
 
 <project name="pivot" default="build">
     <property name="folder.bin" value="ant-bin"/>
-    <property name="folder.lib" value="lib"/>
+    <property name="folder.lib" value="demos/www/lib"/>
 
     <property file="build.properties"/>
 
-    <target name="build">
-        <mkdir dir="jfree/${folder.bin}"/>
-        <javac srcdir="jfree/src"
-            destDir="jfree/${folder.bin}"
+    <target name="build" depends="charts, demos"/>
+    <target name="clean" depends="charts-clean, demos-clean">
+        <delete dir="${folder.lib}"/>
+    </target>
+    
+    <target name="charts">
+        <mkdir dir="charts/${folder.bin}"/>
+        <javac srcdir="charts/src"
+            destDir="charts/${folder.bin}"
             optimize="true"
             deprecation="true"
             debug="false"
@@ -18,25 +23,60 @@
             failonerror="true">
             <compilerarg value="-Xlint"/>
             <classpath>
-                <fileset dir="jfree/lib" includes="**/*.jar"/>
+                <fileset dir="charts/lib" includes="**/*.jar"/>
             </classpath>
         </javac>
     </target>
 
-    <target name="package" depends="build">
+    <target name="charts-clean">
+        <delete dir="charts/${folder.bin}"/>
+    </target>
+
+    <target name="demos" depends="charts">
+        <mkdir dir="demos/${folder.bin}"/>
+        <javac srcdir="demos/src"
+            destDir="demos/${folder.bin}"
+            optimize="true"
+            deprecation="true"
+            debug="false"
+            target="1.5"
+            encoding="UTF-8"
+            failonerror="true">
+            <compilerarg value="-Xlint"/>
+            <classpath>
+                <fileset dir="charts/lib" includes="**/*.jar"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="demos-clean">
+        <delete dir="demos/${folder.bin}"/>
+    </target>
+
+    <!-- Generate deployment files -->
+    <target name="deploy"
+        depends="clean, build">
         <mkdir dir="${folder.lib}"/>
+
         <jar jarfile="${folder.lib}/${ant.project.name}-charts.jfree-${version}.jar">
-            <fileset dir="jfree/${folder.bin}"/>
-            <fileset dir="jfree/src">
+            <fileset dir="charts/${folder.bin}"/>
+            <fileset dir="charts/src">
                 <exclude name="**/*.java"/>
                 <exclude name="**/package.html"/>
             </fileset>
         </jar>
-    </target>
 
-    <target name="clean">
-        <delete dir="jfree/${folder.bin}"/>
-        <delete dir="${folder.lib}"/>
+        <jar jarfile="${folder.lib}/${ant.project.name}-demos.jfree.jar">
+            <fileset dir="demos/${folder.bin}"/>
+            <fileset dir="demos/src">
+                <exclude name="**/*.java"/>
+                <exclude name="**/package.html"/>
+            </fileset>
+        </jar>
+
+        <copy todir="${folder.lib}">
+            <fileset dir="charts/lib" includes="*.jar"/>
+        </copy>
     </target>
 
     <!-- Remove trailing white space in all source files -->
