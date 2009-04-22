@@ -29,7 +29,7 @@ import pivot.collections.List;
  *
  * @author gbrown
  */
-public class HighLowChartViewSkin extends ChartViewSkin {
+public class HighLowChartViewSkin extends JFreeChartViewSkin {
     private boolean candlestick = false;
 
     public ChartView.Element getElementAt(int x, int y) {

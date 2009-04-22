@@ -32,7 +32,7 @@ import pivot.collections.List;
  *
  * @author gbrown
  */
-public class BarChartViewSkin extends ChartViewSkin {
+public class BarChartViewSkin extends JFreeChartViewSkin {
     private boolean stacked = false;
     private boolean threeDimensional = false;
 
