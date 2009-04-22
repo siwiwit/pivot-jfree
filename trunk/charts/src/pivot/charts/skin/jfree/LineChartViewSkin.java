@@ -32,7 +32,7 @@ import pivot.collections.List;
  *
  * @author gbrown
  */
-public class LineChartViewSkin extends ChartViewSkin {
+public class LineChartViewSkin extends JFreeChartViewSkin {
     private boolean threeDimensional = false;
 
     public ChartView.Element getElementAt(int x, int y) {

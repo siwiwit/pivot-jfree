@@ -34,7 +34,7 @@ import pivot.collections.Map;
  *
  * @author gbrown
  */
-public class PieChartViewSkin extends ChartViewSkin {
+public class PieChartViewSkin extends JFreeChartViewSkin {
     private Map<String, Number> explodePercentages = new HashMap<String, Number>();
 
     private boolean threeDimensional = false;

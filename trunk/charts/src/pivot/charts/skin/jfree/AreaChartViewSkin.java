@@ -32,7 +32,7 @@ import pivot.collections.List;
  *
  * @author gbrown
  */
-public class AreaChartViewSkin extends ChartViewSkin {
+public class AreaChartViewSkin extends JFreeChartViewSkin {
     public ChartView.Element getElementAt(int x, int y) {
         ChartView.Element element = null;
 
