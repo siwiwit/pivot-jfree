@@ -15,7 +15,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<TabPane tabOrientation="vertical" selectedIndex="0"
+<TabPane styles="{tabOrientation:'vertical'}"
     xmlns:wtkx="http://incubator.apache.org/pivot/wtkx/1.1"
     xmlns:collections="pivot.collections"
     xmlns:content="pivot.charts.content" xmlns:charts="pivot.charts"
