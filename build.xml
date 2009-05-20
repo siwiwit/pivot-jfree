@@ -10,7 +10,7 @@
     <target name="clean" depends="charts-clean, demos-clean">
         <delete dir="${folder.lib}"/>
     </target>
-    
+
     <target name="charts">
         <mkdir dir="charts/${folder.bin}"/>
         <javac srcdir="charts/src"
@@ -42,7 +42,7 @@
             target="1.5"
             encoding="UTF-8"
             failonerror="true">
-            <compilerarg value="-Xlint"/>
+            <compilerarg line="-Xlint -processor pivot.wtkx.BindProcessor"/>
             <classpath>
                 <fileset dir="charts/lib" includes="**/*.jar"/>
             </classpath>
