@@ -15,21 +15,25 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<Border styles="{padding:6}"
+<Window title="Charts Demo" maximized="true"
     xmlns:wtkx="http://incubator.apache.org/pivot/wtkx/1.1"
     xmlns="pivot.wtk" xmlns:charts="pivot.charts">
     <content>
-        <TabPane selectedIndex="0">
-            <tabs>
-                <wtkx:include src="pie_charts.wtkx" namespace="pieCharts" TabPane.name="Pie Chart"/>
-                <wtkx:include src="bar_charts.wtkx" namespace="barCharts" TabPane.name="Bar Chart"/>
-                <wtkx:include src="line_charts.wtkx" namespace="lineCharts" TabPane.name="Line Chart"/>
-                <wtkx:include src="area_charts.wtkx" namespace="areaCharts" TabPane.name="Area Chart"/>
-                <wtkx:include src="high_low_charts.wtkx" namespace="highLowCharts" TabPane.name="High Low Chart"/>
-            </tabs>
-        </TabPane>
+        <Border styles="{padding:6}">
+            <content>
+                <TabPane>
+                    <tabs>
+                        <wtkx:include src="pie_charts.wtkx" wtkx:id="pieCharts" TabPane.name="Pie Chart"/>
+                        <wtkx:include src="bar_charts.wtkx" wtkx:id="barCharts" TabPane.name="Bar Chart"/>
+                        <wtkx:include src="line_charts.wtkx" wtkx:id="lineCharts" TabPane.name="Line Chart"/>
+                        <wtkx:include src="area_charts.wtkx" wtkx:id="areaCharts" TabPane.name="Area Chart"/>
+                        <wtkx:include src="high_low_charts.wtkx" wtkx:id="highLowCharts" TabPane.name="High Low Chart"/>
+                    </tabs>
+                </TabPane>
+            </content>
+        </Border>
     </content>
-</Border>
+</Window>
 
 
 

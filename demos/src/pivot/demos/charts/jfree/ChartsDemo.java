@@ -31,18 +31,21 @@ import pivot.wtk.ComponentMouseButtonListener;
 import pivot.wtk.Display;
 import pivot.wtk.Mouse;
 import pivot.wtk.Window;
-import pivot.wtkx.WTKXSerializer;
+import pivot.wtkx.Bindable;
 
-public class ChartsDemo implements Application {
-    private class ChartViewMouseButtonHandler implements ComponentMouseButtonListener {
-        public boolean mouseDown(Component component, Mouse.Button button, int x, int y) {
-            return false;
-        }
+public class ChartsDemo extends Bindable implements Application {
+    @Load(resourceName="charts_demo.wtkx") private Window window;
+    @Bind(fieldName="window", id="pieCharts.pieChartView") private PieChartView pieChartView;
+    @Bind(fieldName="window", id="barCharts.categoryBarChartView") private BarChartView categoryBarChartView;
+    @Bind(fieldName="window", id="barCharts.xyBarChartView") private BarChartView xyBarChartView;
+    @Bind(fieldName="window", id="lineCharts.categoryLineChartView") private LineChartView categoryLineChartView;
+    @Bind(fieldName="window", id="lineCharts.xyLineChartView") private LineChartView xyLineChartView;
+    @Bind(fieldName="window", id="areaCharts.categoryAreaChartView") private AreaChartView categoryAreaChartView;
+    @Bind(fieldName="window", id="areaCharts.xyAreaChartView") private AreaChartView xyAreaChartView;
+    @Bind(fieldName="window", id="highLowCharts.highLowChartView") private HighLowChartView highLowChartView;
 
-        public boolean mouseUp(Component component, Mouse.Button button, int x, int y) {
-            return false;
-        }
-
+    private ComponentMouseButtonListener chartViewMouseButtonListener =
+        new ComponentMouseButtonListener.Adapter() {
         @SuppressWarnings("unchecked")
         public boolean mouseClick(Component component, Mouse.Button button, int x, int y, int count) {
             ChartView chartView = (ChartView)component;
@@ -78,48 +81,25 @@ public class ChartsDemo implements Application {
 
             return false;
         }
-    }
-
-    private Window window = null;
+    };
 
     public void startup(Display display, Dictionary<String, String> properties)
         throws Exception {
-        WTKXSerializer wtkxSerializer = new WTKXSerializer();
+        bind();
 
-        window = new Window((Component)wtkxSerializer.readObject(getClass().getResource("charts_demo.wtkx")));
-        window.setTitle("Charts Demo");
+        pieChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
+        categoryBarChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
+        xyBarChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
+        categoryLineChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
+        xyLineChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
+        categoryAreaChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
+        xyAreaChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
+        highLowChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
 
-        ChartViewMouseButtonHandler chartViewMouseButtonHandler = new ChartViewMouseButtonHandler();
-
-        PieChartView pieChartView = (PieChartView)wtkxSerializer.getObjectByName("pieCharts.pieChartView");
-        pieChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonHandler);
-
-        BarChartView categoryBarChartView = (BarChartView)wtkxSerializer.getObjectByName("barCharts.categoryBarChartView");
-        categoryBarChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonHandler);
-
-        BarChartView xyBarChartView = (BarChartView)wtkxSerializer.getObjectByName("barCharts.xyBarChartView");
-        xyBarChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonHandler);
-
-        LineChartView categoryLineChartView = (LineChartView)wtkxSerializer.getObjectByName("lineCharts.categoryLineChartView");
-        categoryLineChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonHandler);
-
-        LineChartView xyLineChartView = (LineChartView)wtkxSerializer.getObjectByName("lineCharts.xyLineChartView");
-        xyLineChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonHandler);
-
-        AreaChartView categoryAreaChartView = (AreaChartView)wtkxSerializer.getObjectByName("areaCharts.categoryAreaChartView");
-        categoryAreaChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonHandler);
-
-        AreaChartView xyAreaChartView = (AreaChartView)wtkxSerializer.getObjectByName("areaCharts.xyAreaChartView");
-        xyAreaChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonHandler);
-
-        HighLowChartView highLowChartView = (HighLowChartView)wtkxSerializer.getObjectByName("highLowCharts.highLowChartView");
-        highLowChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonHandler);
-
-        window.setMaximized(true);
         window.open(display);
     }
 
-    public boolean shutdown(boolean optional) throws Exception {
+    public boolean shutdown(boolean optional) {
         if (window != null) {
             window.close();
         }
