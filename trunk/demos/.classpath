@@ -3,8 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/charts"/>
-	<classpathentry kind="lib" path="/charts/lib/jcommon-1.0.12.jar"/>
-	<classpathentry kind="lib" path="/charts/lib/jfreechart-1.0.9.jar"/>
 	<classpathentry kind="lib" path="/charts/lib/pivot-charts.jar"/>
 	<classpathentry kind="lib" path="/charts/lib/pivot-core.jar"/>
 	<classpathentry kind="lib" path="/charts/lib/pivot-wtk.jar"/>

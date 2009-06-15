@@ -44,7 +44,6 @@ public abstract class JFreeChartViewSkin extends ChartViewSkin {
         return PREFERRED_WIDTH;
     }
 
-
     public int getPreferredHeight(int width) {
         return PREFERRED_HEIGHT;
     }
@@ -66,7 +65,8 @@ public abstract class JFreeChartViewSkin extends ChartViewSkin {
             Graphics2D bufferedImageGraphics = (Graphics2D)bufferedImage.getGraphics();
 
             java.awt.Rectangle area = new java.awt.Rectangle(0, 0, width, height);
-            chart.setBackgroundPaint(getBackgroundColor());
+            chart.setBackgroundPaint(null);
+            chart.getPlot().setBackgroundPaint(getBackgroundColor());
             chart.draw(bufferedImageGraphics, area, chartRenderingInfo);
 
             bufferedImageGraphics.dispose();
