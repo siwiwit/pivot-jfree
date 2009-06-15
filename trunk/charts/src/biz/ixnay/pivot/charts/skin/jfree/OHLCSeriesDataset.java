@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package pivot.charts.skin.jfree;
+package biz.ixnay.pivot.charts.skin.jfree;
 
 import java.util.Date;
 

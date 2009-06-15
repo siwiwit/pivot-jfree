@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package pivot.charts.skin.jfree;
+package biz.ixnay.pivot.charts.skin.jfree;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
@@ -23,20 +23,23 @@ import org.jfree.chart.entity.XYItemEntity;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 
-import pivot.charts.AreaChartView;
 import pivot.charts.ChartView;
+import pivot.charts.LineChartView;
 import pivot.collections.List;
 
 /**
- * Area chart view skin.
+ * Line chart view skin.
  *
  * @author gbrown
  */
-public class AreaChartViewSkin extends JFreeChartViewSkin {
+public class LineChartViewSkin extends JFreeChartViewSkin {
+    private boolean threeDimensional = false;
+
     public ChartView.Element getElementAt(int x, int y) {
         ChartView.Element element = null;
 
         ChartEntity chartEntity = getChartEntityAt(x, y);
+
         if (chartEntity instanceof CategoryItemEntity) {
             CategoryItemEntity categoryItemEntity = (CategoryItemEntity)chartEntity;
             CategoryDataset dataset = categoryItemEntity.getDataset();
@@ -57,9 +60,8 @@ public class AreaChartViewSkin extends JFreeChartViewSkin {
         return element;
     }
 
-    @Override
     protected JFreeChart createChart() {
-        AreaChartView chartView = (AreaChartView)getComponent();
+        LineChartView chartView = (LineChartView)getComponent();
 
         String title = chartView.getTitle();
         String horizontalAxisLabel = chartView.getHorizontalAxisLabel();
@@ -73,14 +75,29 @@ public class AreaChartViewSkin extends JFreeChartViewSkin {
         ChartView.CategorySequence categories = chartView.getCategories();
         if (categories.getLength() > 0) {
             CategorySeriesDataset dataset = new CategorySeriesDataset(categories, seriesNameKey, chartData);
-            chart = ChartFactory.createAreaChart(title, horizontalAxisLabel, verticalAxisLabel,
-                dataset, PlotOrientation.VERTICAL, showLegend, false, false);
+
+            if (threeDimensional) {
+                chart = ChartFactory.createLineChart3D(title, horizontalAxisLabel, verticalAxisLabel,
+                    dataset, PlotOrientation.VERTICAL, showLegend, false, false);
+            } else {
+                chart = ChartFactory.createLineChart(title, horizontalAxisLabel, verticalAxisLabel,
+                    dataset, PlotOrientation.VERTICAL, showLegend, false, false);
+            }
         } else {
-            chart = ChartFactory.createXYAreaChart(title, horizontalAxisLabel, verticalAxisLabel,
+            chart = ChartFactory.createXYLineChart(title, horizontalAxisLabel, verticalAxisLabel,
                 new XYSeriesDataset(seriesNameKey, chartData),
                 PlotOrientation.VERTICAL, showLegend, false, false);
         }
 
         return chart;
+    }
+
+    public boolean isThreeDimensional() {
+        return threeDimensional;
+    }
+
+    public void setThreeDimensional(boolean threeDimensional) {
+        this.threeDimensional = threeDimensional;
+        repaintComponent();
     }
 }
