@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="pivot" default="build">
+<project name="pivot-jfree" default="build">
     <property name="folder.bin" value="ant-bin"/>
     <property name="folder.lib" value="demos/www/lib"/>
 
@@ -58,7 +58,7 @@
         depends="clean, build">
         <mkdir dir="${folder.lib}"/>
 
-        <jar jarfile="${folder.lib}/${ant.project.name}-charts.jfree-${version}.jar">
+        <jar jarfile="${folder.lib}/${ant.project.name}-${version}.jar">
             <fileset dir="charts/${folder.bin}"/>
             <fileset dir="charts/src">
                 <exclude name="**/*.java"/>
@@ -66,7 +66,7 @@
             </fileset>
         </jar>
 
-        <jar jarfile="${folder.lib}/${ant.project.name}-demos.jfree.jar">
+        <jar jarfile="${folder.lib}/${ant.project.name}-demos.jar">
             <fileset dir="demos/${folder.bin}"/>
             <fileset dir="demos/src">
                 <exclude name="**/*.java"/>
