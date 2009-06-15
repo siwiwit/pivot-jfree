@@ -20,9 +20,9 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.entity.ChartEntity;
 import org.jfree.chart.entity.XYItemEntity;
 
-import pivot.charts.ChartView;
-import pivot.charts.HighLowChartView;
-import pivot.collections.List;
+import org.apache.pivot.charts.ChartView;
+import org.apache.pivot.charts.HighLowChartView;
+import org.apache.pivot.collections.List;
 
 /**
  * High/low chart view skin.

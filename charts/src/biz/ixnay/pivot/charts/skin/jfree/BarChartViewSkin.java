@@ -23,9 +23,9 @@ import org.jfree.chart.entity.XYItemEntity;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 
-import pivot.charts.BarChartView;
-import pivot.charts.ChartView;
-import pivot.collections.List;
+import org.apache.pivot.charts.BarChartView;
+import org.apache.pivot.charts.ChartView;
+import org.apache.pivot.collections.List;
 
 /**
  * Bar chart view skin.

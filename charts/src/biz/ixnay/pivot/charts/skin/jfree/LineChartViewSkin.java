@@ -23,9 +23,9 @@ import org.jfree.chart.entity.XYItemEntity;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 
-import pivot.charts.ChartView;
-import pivot.charts.LineChartView;
-import pivot.collections.List;
+import org.apache.pivot.charts.ChartView;
+import org.apache.pivot.charts.LineChartView;
+import org.apache.pivot.collections.List;
 
 /**
  * Line chart view skin.

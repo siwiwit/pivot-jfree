@@ -15,35 +15,38 @@
  */
 package biz.ixnay.pivot.demos.charts.jfree;
 
-import pivot.beans.BeanDictionary;
-import pivot.charts.AreaChartView;
-import pivot.charts.BarChartView;
-import pivot.charts.ChartView;
-import pivot.charts.HighLowChartView;
-import pivot.charts.LineChartView;
-import pivot.charts.PieChartView;
-import pivot.collections.Dictionary;
-import pivot.collections.List;
-import pivot.wtk.Alert;
-import pivot.wtk.Application;
-import pivot.wtk.Component;
-import pivot.wtk.ComponentMouseButtonListener;
-import pivot.wtk.DesktopApplicationContext;
-import pivot.wtk.Display;
-import pivot.wtk.Mouse;
-import pivot.wtk.Window;
-import pivot.wtkx.Bindable;
+import org.apache.pivot.beans.BeanDictionary;
+import org.apache.pivot.charts.AreaChartView;
+import org.apache.pivot.charts.BarChartView;
+import org.apache.pivot.charts.ChartView;
+import org.apache.pivot.charts.HighLowChartView;
+import org.apache.pivot.charts.LineChartView;
+import org.apache.pivot.charts.PieChartView;
+import org.apache.pivot.collections.Dictionary;
+import org.apache.pivot.collections.List;
+import org.apache.pivot.collections.Map;
+import org.apache.pivot.wtk.Alert;
+import org.apache.pivot.wtk.Application;
+import org.apache.pivot.wtk.Component;
+import org.apache.pivot.wtk.ComponentMouseButtonListener;
+import org.apache.pivot.wtk.DesktopApplicationContext;
+import org.apache.pivot.wtk.Display;
+import org.apache.pivot.wtk.Mouse;
+import org.apache.pivot.wtk.Window;
+import org.apache.pivot.wtkx.WTKX;
+import org.apache.pivot.wtkx.WTKXSerializer;
 
-public class ChartsDemo extends Bindable implements Application {
-    @Load(resourceName="charts_demo.wtkx") private Window window;
-    @Bind(fieldName="window", id="pieCharts.pieChartView") private PieChartView pieChartView;
-    @Bind(fieldName="window", id="barCharts.categoryBarChartView") private BarChartView categoryBarChartView;
-    @Bind(fieldName="window", id="barCharts.xyBarChartView") private BarChartView xyBarChartView;
-    @Bind(fieldName="window", id="lineCharts.categoryLineChartView") private LineChartView categoryLineChartView;
-    @Bind(fieldName="window", id="lineCharts.xyLineChartView") private LineChartView xyLineChartView;
-    @Bind(fieldName="window", id="areaCharts.categoryAreaChartView") private AreaChartView categoryAreaChartView;
-    @Bind(fieldName="window", id="areaCharts.xyAreaChartView") private AreaChartView xyAreaChartView;
-    @Bind(fieldName="window", id="highLowCharts.highLowChartView") private HighLowChartView highLowChartView;
+public class ChartsDemo implements Application {
+    private Window window = null;
+
+    @WTKX(id="pieCharts.pieChartView") private PieChartView pieChartView;
+    @WTKX(id="barCharts.categoryBarChartView") private BarChartView categoryBarChartView;
+    @WTKX(id="barCharts.xyBarChartView") private BarChartView xyBarChartView;
+    @WTKX(id="lineCharts.categoryLineChartView") private LineChartView categoryLineChartView;
+    @WTKX(id="lineCharts.xyLineChartView") private LineChartView xyLineChartView;
+    @WTKX(id="areaCharts.categoryAreaChartView") private AreaChartView categoryAreaChartView;
+    @WTKX(id="areaCharts.xyAreaChartView") private AreaChartView xyAreaChartView;
+    @WTKX(id="highLowCharts.highLowChartView") private HighLowChartView highLowChartView;
 
     private ComponentMouseButtonListener chartViewMouseButtonListener =
         new ComponentMouseButtonListener.Adapter() {
@@ -84,9 +87,11 @@ public class ChartsDemo extends Bindable implements Application {
         }
     };
 
-    public void startup(Display display, Dictionary<String, String> properties)
+    public void startup(Display display, Map<String, String> properties)
         throws Exception {
-        bind();
+        WTKXSerializer wtkxSerializer = new WTKXSerializer();
+        window = (Window)wtkxSerializer.readObject(this, "charts_demo.wtkx");
+        wtkxSerializer.bind(this, ChartsDemo.class);
 
         pieChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
         categoryBarChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);

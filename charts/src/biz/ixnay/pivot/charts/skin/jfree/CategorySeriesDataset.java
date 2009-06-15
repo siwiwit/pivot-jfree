@@ -19,10 +19,10 @@ import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.general.DatasetChangeListener;
 import org.jfree.data.general.DatasetGroup;
 
-import pivot.beans.BeanDictionary;
-import pivot.charts.ChartView;
-import pivot.collections.Dictionary;
-import pivot.collections.List;
+import org.apache.pivot.beans.BeanDictionary;
+import org.apache.pivot.charts.ChartView;
+import org.apache.pivot.collections.Dictionary;
+import org.apache.pivot.collections.List;
 
 /**
  * Implementation of JFreeChart CategoryDataset.

@@ -21,9 +21,9 @@ import org.jfree.data.general.DatasetChangeListener;
 import org.jfree.data.general.DatasetGroup;
 import org.jfree.data.general.PieDataset;
 
-import pivot.beans.BeanDictionary;
-import pivot.charts.ChartView;
-import pivot.collections.Dictionary;
+import org.apache.pivot.beans.BeanDictionary;
+import org.apache.pivot.charts.ChartView;
+import org.apache.pivot.collections.Dictionary;
 
 /**
  * Implementation of JFreeChart PieDataset.

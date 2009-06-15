@@ -23,11 +23,11 @@ import org.jfree.chart.plot.PiePlot;
 import org.jfree.chart.plot.PiePlot3D;
 import org.jfree.util.TableOrder;
 
-import pivot.charts.PieChartView;
-import pivot.charts.ChartView;
-import pivot.collections.HashMap;
-import pivot.collections.List;
-import pivot.collections.Map;
+import org.apache.pivot.charts.PieChartView;
+import org.apache.pivot.charts.ChartView;
+import org.apache.pivot.collections.HashMap;
+import org.apache.pivot.collections.List;
+import org.apache.pivot.collections.Map;
 
 /**
  * Pie chart view skin.
