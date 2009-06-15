@@ -42,7 +42,7 @@
             target="1.5"
             encoding="UTF-8"
             failonerror="true">
-            <compilerarg line="-Xlint -processor pivot.wtkx.BindProcessor"/>
+            <compilerarg line="-Xlint -processor org.apache.pivot.wtkx.BindProcessor"/>
             <classpath>
                 <fileset dir="charts/lib" includes="**/*.jar"/>
             </classpath>
