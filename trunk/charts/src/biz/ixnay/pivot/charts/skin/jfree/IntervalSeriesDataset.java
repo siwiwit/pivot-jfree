@@ -17,8 +17,8 @@ package biz.ixnay.pivot.charts.skin.jfree;
 
 import org.jfree.data.xy.IntervalXYDataset;
 
-import pivot.collections.Dictionary;
-import pivot.collections.List;
+import org.apache.pivot.collections.Dictionary;
+import org.apache.pivot.collections.List;
 
 /**
  * Implementation of JFreeChart IntervalXYDataset.

@@ -19,8 +19,8 @@ import java.util.Date;
 
 import org.jfree.data.xy.OHLCDataset;
 
-import pivot.collections.Dictionary;
-import pivot.collections.List;
+import org.apache.pivot.collections.Dictionary;
+import org.apache.pivot.collections.List;
 
 /**
  * Implementation of JFreeChart OHLCDataset.

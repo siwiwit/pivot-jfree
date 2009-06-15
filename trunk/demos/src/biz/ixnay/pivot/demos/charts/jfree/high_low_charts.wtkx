@@ -19,10 +19,11 @@ limitations under the License.
     seriesNameKey="name" title="High Low Chart Example"
     horizontalAxisLabel="Date" verticalAxisLabel="Value"
     styles="{candlestick:true}"
-    xmlns:wtkx="http://incubator.apache.org/pivot/wtkx/1.1"
-    xmlns:collections="pivot.collections"
-    xmlns:content="pivot.charts.content" xmlns:charts="pivot.charts"
-    xmlns="pivot.wtk">
+    xmlns:wtkx="http://pivot.apache.org/wtkx"
+    xmlns:collections="org.apache.pivot.collections"
+    xmlns:content="org.apache.pivot.charts.content"
+    xmlns:charts="org.apache.pivot.charts"
+    xmlns="org.apache.pivot.wtk">
     <chartData>
         <collections:ArrayList>
             <content:ValueSeries name="Example Series 1">

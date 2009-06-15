@@ -15,14 +15,14 @@
  */
 package biz.ixnay.pivot.charts.skin.jfree;
 
-import pivot.charts.AreaChartView;
-import pivot.charts.BarChartView;
-import pivot.charts.ChartView;
-import pivot.charts.HighLowChartView;
-import pivot.charts.LineChartView;
-import pivot.charts.PieChartView;
-import pivot.charts.Provider;
-import pivot.wtk.Skin;
+import org.apache.pivot.charts.AreaChartView;
+import org.apache.pivot.charts.BarChartView;
+import org.apache.pivot.charts.ChartView;
+import org.apache.pivot.charts.HighLowChartView;
+import org.apache.pivot.charts.LineChartView;
+import org.apache.pivot.charts.PieChartView;
+import org.apache.pivot.charts.Provider;
+import org.apache.pivot.wtk.Skin;
 
 /**
  * JFreeChart chart provider.

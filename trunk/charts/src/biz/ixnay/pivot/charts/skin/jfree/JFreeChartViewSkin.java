@@ -23,8 +23,8 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.entity.ChartEntity;
 import org.jfree.chart.entity.EntityCollection;
 
-import pivot.charts.skin.ChartViewSkin;
-import pivot.wtk.Dimensions;
+import org.apache.pivot.charts.skin.ChartViewSkin;
+import org.apache.pivot.wtk.Dimensions;
 
 /**
  * Abstract base class for chart view skins.

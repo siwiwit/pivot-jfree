@@ -16,10 +16,11 @@ limitations under the License.
 -->
 
 <TabPane styles="{tabOrientation:'vertical'}"
-    xmlns:wtkx="http://incubator.apache.org/pivot/wtkx/1.1"
-    xmlns:collections="pivot.collections"
-    xmlns:content="pivot.charts.content" xmlns:charts="pivot.charts"
-    xmlns="pivot.wtk">
+    xmlns:wtkx="http://pivot.apache.org/wtkx"
+    xmlns:collections="org.apache.pivot.collections"
+    xmlns:content="org.apache.pivot.charts.content"
+    xmlns:charts="org.apache.pivot.charts"
+    xmlns="org.apache.pivot.wtk">
     <tabs>
         <charts:AreaChartView wtkx:id="categoryAreaChartView" TabPane.name="Category"
             seriesNameKey="name" title="Category Area Chart Example"

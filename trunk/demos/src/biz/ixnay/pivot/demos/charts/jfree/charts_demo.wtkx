@@ -16,8 +16,9 @@ limitations under the License.
 -->
 
 <Window title="Charts Demo" maximized="true"
-    xmlns:wtkx="http://incubator.apache.org/pivot/wtkx/1.1"
-    xmlns="pivot.wtk" xmlns:charts="pivot.charts">
+    xmlns:wtkx="http://pivot.apache.org/wtkx"
+    xmlns:charts="org.apache.pivot.charts"
+    xmlns="org.apache.pivot.wtk">
     <content>
         <Border styles="{padding:6}">
             <content>
