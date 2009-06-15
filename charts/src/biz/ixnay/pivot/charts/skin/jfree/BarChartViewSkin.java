@@ -13,33 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package pivot.charts.skin.jfree;
+package biz.ixnay.pivot.charts.skin.jfree;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.entity.CategoryItemEntity;
 import org.jfree.chart.entity.ChartEntity;
+import org.jfree.chart.entity.CategoryItemEntity;
 import org.jfree.chart.entity.XYItemEntity;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 
+import pivot.charts.BarChartView;
 import pivot.charts.ChartView;
-import pivot.charts.LineChartView;
 import pivot.collections.List;
 
 /**
- * Line chart view skin.
+ * Bar chart view skin.
  *
  * @author gbrown
  */
-public class LineChartViewSkin extends JFreeChartViewSkin {
+public class BarChartViewSkin extends JFreeChartViewSkin {
+    private boolean stacked = false;
     private boolean threeDimensional = false;
 
     public ChartView.Element getElementAt(int x, int y) {
         ChartView.Element element = null;
 
         ChartEntity chartEntity = getChartEntityAt(x, y);
-
         if (chartEntity instanceof CategoryItemEntity) {
             CategoryItemEntity categoryItemEntity = (CategoryItemEntity)chartEntity;
             CategoryDataset dataset = categoryItemEntity.getDataset();
@@ -61,7 +61,7 @@ public class LineChartViewSkin extends JFreeChartViewSkin {
     }
 
     protected JFreeChart createChart() {
-        LineChartView chartView = (LineChartView)getComponent();
+        BarChartView chartView = (BarChartView)getComponent();
 
         String title = chartView.getTitle();
         String horizontalAxisLabel = chartView.getHorizontalAxisLabel();
@@ -71,25 +71,43 @@ public class LineChartViewSkin extends JFreeChartViewSkin {
         String seriesNameKey = chartView.getSeriesNameKey();
         List<?> chartData = chartView.getChartData();
 
+        // TODO Make plot orientation a style property
+
         JFreeChart chart;
         ChartView.CategorySequence categories = chartView.getCategories();
         if (categories.getLength() > 0) {
             CategorySeriesDataset dataset = new CategorySeriesDataset(categories, seriesNameKey, chartData);
 
-            if (threeDimensional) {
-                chart = ChartFactory.createLineChart3D(title, horizontalAxisLabel, verticalAxisLabel,
+            if (stacked && threeDimensional) {
+                chart = ChartFactory.createStackedBarChart3D(title, horizontalAxisLabel, verticalAxisLabel,
+                    dataset, PlotOrientation.VERTICAL, showLegend, false, false);
+            } else if (stacked) {
+                chart = ChartFactory.createStackedBarChart(title, horizontalAxisLabel, verticalAxisLabel,
+                    dataset, PlotOrientation.VERTICAL, showLegend, false, false);
+            } else if (threeDimensional) {
+                chart = ChartFactory.createBarChart3D(title, horizontalAxisLabel, verticalAxisLabel,
                     dataset, PlotOrientation.VERTICAL, showLegend, false, false);
             } else {
-                chart = ChartFactory.createLineChart(title, horizontalAxisLabel, verticalAxisLabel,
+                chart = ChartFactory.createBarChart(title, horizontalAxisLabel, verticalAxisLabel,
                     dataset, PlotOrientation.VERTICAL, showLegend, false, false);
             }
         } else {
-            chart = ChartFactory.createXYLineChart(title, horizontalAxisLabel, verticalAxisLabel,
-                new XYSeriesDataset(seriesNameKey, chartData),
+            // TODO Make the dateAxis argument a style property
+            chart = ChartFactory.createXYBarChart(title, horizontalAxisLabel, false, verticalAxisLabel,
+                new IntervalSeriesDataset(seriesNameKey, chartData),
                 PlotOrientation.VERTICAL, showLegend, false, false);
         }
 
         return chart;
+    }
+
+    public boolean isStacked() {
+        return stacked;
+    }
+
+    public void setStacked(boolean stacked) {
+        this.stacked = stacked;
+        repaintComponent();
     }
 
     public boolean isThreeDimensional() {

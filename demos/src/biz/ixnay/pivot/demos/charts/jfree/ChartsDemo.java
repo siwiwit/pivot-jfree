@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package pivot.demos.charts.jfree;
+package biz.ixnay.pivot.demos.charts.jfree;
 
 import pivot.beans.BeanDictionary;
 import pivot.charts.AreaChartView;
@@ -28,6 +28,7 @@ import pivot.wtk.Alert;
 import pivot.wtk.Application;
 import pivot.wtk.Component;
 import pivot.wtk.ComponentMouseButtonListener;
+import pivot.wtk.DesktopApplicationContext;
 import pivot.wtk.Display;
 import pivot.wtk.Mouse;
 import pivot.wtk.Window;
@@ -111,5 +112,9 @@ public class ChartsDemo extends Bindable implements Application {
     }
 
     public void resume() {
+    }
+
+    public static void main(String[] args) {
+        DesktopApplicationContext.main(ChartsDemo.class, args);
     }
 }
