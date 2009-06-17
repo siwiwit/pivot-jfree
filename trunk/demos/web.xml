@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 Copyright (c) 2009 VMware, Inc.
 Copyright 2009 G. Brown, ixnay.biz.
@@ -15,16 +16,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<html>
-<head>
-<title>Pivot/JFree Charting Demo</title>
-</head>
-<body>
-<applet code="org.apache.pivot.wtk.BrowserApplicationContext$HostApplet"
-    archive="lib/pivot-core-1.3-incubating.jar,lib/pivot-wtk-1.3-incubating.jar,lib/pivot-wtk-1.3-incubating.terra.jar,lib/pivot-charts-1.3-incubating.jar,lib/pivot-jfree-1.3.jar,lib/pivot-jfree-demos-1.3.jar,lib/jcommon-1.0.16.jar,lib/jfreechart-1.0.13.jar"
-    width="800" height="600">
-    <param name="applicationClassName" value="biz.ixnay.pivot.demos.charts.jfree.ChartsDemo">
-    <param name="image" value="">
-</applet>
-</body>
-</html>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+    version="2.4">
+    <description>Pivot/JFree Demos</description>
+    <display-name>Pivot/JFree Demos</display-name>
+</web-app>
+
