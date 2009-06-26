@@ -34,20 +34,18 @@ import org.apache.pivot.wtk.DesktopApplicationContext;
 import org.apache.pivot.wtk.Display;
 import org.apache.pivot.wtk.Mouse;
 import org.apache.pivot.wtk.Window;
-import org.apache.pivot.wtkx.WTKX;
 import org.apache.pivot.wtkx.WTKXSerializer;
 
 public class ChartsDemo implements Application {
     private Window window = null;
-
-    @WTKX(id="pieCharts.pieChartView") private PieChartView pieChartView;
-    @WTKX(id="barCharts.categoryBarChartView") private BarChartView categoryBarChartView;
-    @WTKX(id="barCharts.xyBarChartView") private BarChartView xyBarChartView;
-    @WTKX(id="lineCharts.categoryLineChartView") private LineChartView categoryLineChartView;
-    @WTKX(id="lineCharts.xyLineChartView") private LineChartView xyLineChartView;
-    @WTKX(id="areaCharts.categoryAreaChartView") private AreaChartView categoryAreaChartView;
-    @WTKX(id="areaCharts.xyAreaChartView") private AreaChartView xyAreaChartView;
-    @WTKX(id="highLowCharts.highLowChartView") private HighLowChartView highLowChartView;
+    private PieChartView pieChartView = null;
+    private BarChartView categoryBarChartView = null;
+    private BarChartView xyBarChartView = null;
+    private LineChartView categoryLineChartView = null;
+    private LineChartView xyLineChartView = null;
+    private AreaChartView categoryAreaChartView = null;
+    private AreaChartView xyAreaChartView = null;
+    private HighLowChartView highLowChartView = null;
 
     private ComponentMouseButtonListener chartViewMouseButtonListener =
         new ComponentMouseButtonListener.Adapter() {
@@ -92,15 +90,29 @@ public class ChartsDemo implements Application {
         throws Exception {
         WTKXSerializer wtkxSerializer = new WTKXSerializer();
         window = (Window)wtkxSerializer.readObject(this, "charts_demo.wtkx");
-        wtkxSerializer.bind(this, ChartsDemo.class);
 
+        pieChartView = (PieChartView)wtkxSerializer.get("pieCharts.pieChartView");
         pieChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
+
+        categoryBarChartView = (BarChartView)wtkxSerializer.get("barCharts.categoryBarChartView");
         categoryBarChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
+
+        xyBarChartView = (BarChartView)wtkxSerializer.get("barCharts.xyBarChartView");
         xyBarChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
+
+        categoryLineChartView = (LineChartView)wtkxSerializer.get("lineCharts.categoryLineChartView");
         categoryLineChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
+
+        xyLineChartView = (LineChartView)wtkxSerializer.get("lineCharts.xyLineChartView");
         xyLineChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
+
+        categoryAreaChartView = (AreaChartView)wtkxSerializer.get("areaCharts.categoryAreaChartView");
         categoryAreaChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
+
+        xyAreaChartView = (AreaChartView)wtkxSerializer.get("areaCharts.xyAreaChartView");
         xyAreaChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
+
+        highLowChartView = (HighLowChartView)wtkxSerializer.get("highLowCharts.highLowChartView");
         highLowChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
 
         window.open(display);
