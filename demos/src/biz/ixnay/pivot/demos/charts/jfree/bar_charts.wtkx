@@ -23,7 +23,7 @@ limitations under the License.
     xmlns:charts="org.apache.pivot.charts"
     xmlns="org.apache.pivot.wtk">
     <tabs>
-        <charts:BarChartView wtkx:id="categoryBarChartView" TabPane.name="Category"
+        <charts:BarChartView wtkx:id="categoryBarChartView" TabPane.label="Category"
             seriesNameKey="name" title="Category Bar Chart Example"
             horizontalAxisLabel="Categories" verticalAxisLabel="Values"
             showLegend="true"
@@ -43,7 +43,7 @@ limitations under the License.
             </chartData>
         </charts:BarChartView>
 
-        <charts:BarChartView wtkx:id="xyBarChartView" TabPane.name="XY"
+        <charts:BarChartView wtkx:id="xyBarChartView" TabPane.label="XY"
             seriesNameKey="name" title="XY Bar Chart Example"
             horizontalAxisLabel="X" verticalAxisLabel="Y">
             <chartData>

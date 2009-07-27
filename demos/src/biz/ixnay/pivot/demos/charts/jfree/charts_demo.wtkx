@@ -25,11 +25,11 @@ limitations under the License.
             <content>
                 <TabPane>
                     <tabs>
-                        <wtkx:include src="pie_charts.wtkx" wtkx:id="pieCharts" TabPane.name="Pie Chart"/>
-                        <wtkx:include src="bar_charts.wtkx" wtkx:id="barCharts" TabPane.name="Bar Chart"/>
-                        <wtkx:include src="line_charts.wtkx" wtkx:id="lineCharts" TabPane.name="Line Chart"/>
-                        <wtkx:include src="area_charts.wtkx" wtkx:id="areaCharts" TabPane.name="Area Chart"/>
-                        <wtkx:include src="high_low_charts.wtkx" wtkx:id="highLowCharts" TabPane.name="High Low Chart"/>
+                        <wtkx:include src="pie_charts.wtkx" wtkx:id="pieCharts" TabPane.label="Pie Chart"/>
+                        <wtkx:include src="bar_charts.wtkx" wtkx:id="barCharts" TabPane.label="Bar Chart"/>
+                        <wtkx:include src="line_charts.wtkx" wtkx:id="lineCharts" TabPane.label="Line Chart"/>
+                        <wtkx:include src="area_charts.wtkx" wtkx:id="areaCharts" TabPane.label="Area Chart"/>
+                        <wtkx:include src="high_low_charts.wtkx" wtkx:id="highLowCharts" TabPane.label="High Low Chart"/>
                     </tabs>
                 </TabPane>
             </content>
