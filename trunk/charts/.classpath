@@ -5,9 +5,9 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/jcommon-1.0.16.jar"/>
 	<classpathentry kind="lib" path="lib/jfreechart-1.0.13.jar"/>
-	<classpathentry kind="lib" path="lib/pivot-charts-1.3-incubating.jar"/>
-	<classpathentry kind="lib" path="lib/pivot-core-1.3-incubating.jar"/>
-	<classpathentry kind="lib" path="lib/pivot-wtk-1.3-incubating.jar"/>
-	<classpathentry kind="lib" path="lib/pivot-wtk-1.3-incubating.terra.jar"/>
+	<classpathentry kind="lib" path="lib/pivot-charts-1.4.jar"/>
+	<classpathentry kind="lib" path="lib/pivot-core-1.4.jar"/>
+	<classpathentry kind="lib" path="lib/pivot-wtk-1.4.jar"/>
+	<classpathentry kind="lib" path="lib/pivot-wtk-1.4.terra.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
