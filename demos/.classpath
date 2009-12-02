@@ -8,6 +8,6 @@
 	<classpathentry kind="lib" path="/charts/lib/pivot-charts-1.4.jar"/>
 	<classpathentry kind="lib" path="/charts/lib/pivot-core-1.4.jar"/>
 	<classpathentry kind="lib" path="/charts/lib/pivot-wtk-1.4.jar"/>
-	<classpathentry kind="lib" path="/charts/lib/pivot-wtk-1.4.terra.jar"/>
+	<classpathentry kind="lib" path="/charts/lib/pivot-wtk-terra-1.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
