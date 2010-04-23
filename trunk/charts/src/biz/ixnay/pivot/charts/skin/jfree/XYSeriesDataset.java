@@ -21,7 +21,7 @@ import org.jfree.data.general.DatasetChangeListener;
 import org.jfree.data.general.DatasetGroup;
 import org.jfree.data.xy.XYDataset;
 
-import org.apache.pivot.beans.BeanDictionary;
+import org.apache.pivot.beans.BeanAdapter;
 import org.apache.pivot.collections.Dictionary;
 import org.apache.pivot.collections.List;
 
@@ -151,7 +151,7 @@ public class XYSeriesDataset implements XYDataset {
         if (series instanceof Dictionary<?, ?>) {
             seriesDictionary = (Dictionary<String, ?>)series;
         } else {
-            seriesDictionary = new BeanDictionary(series);
+            seriesDictionary = new BeanAdapter(series);
         }
 
         return seriesDictionary;
@@ -171,7 +171,7 @@ public class XYSeriesDataset implements XYDataset {
         if (item instanceof Dictionary<?, ?>) {
             itemDictionary = (Dictionary<String, ?>)item;
         } else {
-            itemDictionary = new BeanDictionary(item);
+            itemDictionary = new BeanAdapter(item);
         }
 
         return itemDictionary;
