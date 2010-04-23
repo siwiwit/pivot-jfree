@@ -22,7 +22,7 @@ import org.jfree.data.general.DatasetChangeListener;
 import org.jfree.data.general.DatasetGroup;
 import org.jfree.data.general.PieDataset;
 
-import org.apache.pivot.beans.BeanDictionary;
+import org.apache.pivot.beans.BeanAdapter;
 import org.apache.pivot.charts.ChartView;
 import org.apache.pivot.collections.Dictionary;
 
@@ -111,7 +111,7 @@ public class PieSeriesDataset implements PieDataset {
         if (series instanceof Dictionary<?, ?>) {
             seriesDictionary = (Dictionary<String, ?>)series;
         } else {
-            seriesDictionary = new BeanDictionary(series);
+            seriesDictionary = new BeanAdapter(series);
         }
 
         Object value = seriesDictionary.get(categoryKey);

@@ -20,7 +20,7 @@ import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.general.DatasetChangeListener;
 import org.jfree.data.general.DatasetGroup;
 
-import org.apache.pivot.beans.BeanDictionary;
+import org.apache.pivot.beans.BeanAdapter;
 import org.apache.pivot.charts.ChartView;
 import org.apache.pivot.collections.Dictionary;
 import org.apache.pivot.collections.List;
@@ -174,7 +174,7 @@ public class CategorySeriesDataset implements CategoryDataset {
         if (series instanceof Dictionary<?, ?>) {
             seriesDictionary = (Dictionary<String, ?>)series;
         } else {
-            seriesDictionary = new BeanDictionary(series);
+            seriesDictionary = new BeanAdapter(series);
         }
 
         return seriesDictionary;

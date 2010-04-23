@@ -16,7 +16,7 @@
  */
 package biz.ixnay.pivot.demos.charts.jfree;
 
-import org.apache.pivot.beans.BeanDictionary;
+import org.apache.pivot.beans.BeanAdapter;
 import org.apache.pivot.charts.AreaChartView;
 import org.apache.pivot.charts.BarChartView;
 import org.apache.pivot.charts.ChartView;
@@ -73,7 +73,7 @@ public class ChartsDemo implements Application {
                 if (series instanceof Dictionary<?, ?>) {
                     seriesDictionary = (Dictionary<String, Object>)series;
                 } else {
-                    seriesDictionary = new BeanDictionary(series);
+                    seriesDictionary = new BeanAdapter(series);
                 }
 
                 String seriesNameKey = chartView.getSeriesNameKey();
