@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (c) 2009 VMware, Inc.
+Copyright 2009 G. Brown, ixnay.biz.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<project name="pivot-jfree" default="build">
+    <property name="folder.bin" value="ant-bin"/>
+    <property name="folder.lib" value="demos/www/lib"/>
+
+    <property file="build.properties"/>
+
+    <target name="build" depends="charts, demos"/>
+    <target name="clean" depends="charts-clean, demos-clean">
+        <delete dir="${folder.lib}"/>
+        <delete file="${ant.project.name}_demos.war"/>
+    </target>
+
+    <target name="charts">
+        <mkdir dir="charts/${folder.bin}"/>
+        <javac srcdir="charts/src"
+            destDir="charts/${folder.bin}"
+            optimize="true"
+            deprecation="true"
+            debug="false"
+            target="1.6"
+            encoding="UTF-8"
+            failonerror="true">
+            <compilerarg value="-Xlint"/>
+            <classpath>
+                <fileset dir="charts/lib" includes="**/*.jar"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="charts-clean">
+        <delete dir="charts/${folder.bin}"/>
+    </target>
+
+    <target name="demos" depends="charts">
+        <mkdir dir="demos/${folder.bin}"/>
+        <javac srcdir="demos/src"
+            destDir="demos/${folder.bin}"
+            optimize="true"
+            deprecation="true"
+            debug="false"
+            target="1.6"
+            encoding="UTF-8"
+            failonerror="true">
+            <compilerarg line="-Xlint"/>
+            <classpath>
+                <fileset dir="charts/lib" includes="**/*.jar"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="demos-clean">
+        <delete dir="demos/${folder.bin}"/>
+    </target>
+
+    <!-- Generate deployment files -->
+    <target name="deploy"
+        depends="clean, build">
+        <mkdir dir="${folder.lib}"/>
+
+        <jar jarfile="${folder.lib}/${ant.project.name}-${version}.jar">
+            <fileset dir="charts/${folder.bin}"/>
+            <fileset dir="charts/src">
+                <exclude name="**/*.java"/>
+                <exclude name="**/package.html"/>
+            </fileset>
+        </jar>
+
+        <jar jarfile="${folder.lib}/${ant.project.name}-demos-${version}.jar">
+            <fileset dir="demos/${folder.bin}"/>
+            <fileset dir="demos/src">
+                <exclude name="**/*.java"/>
+                <exclude name="**/package.html"/>
+            </fileset>
+        </jar>
+
+        <copy todir="${folder.lib}">
+            <fileset dir="charts/lib" includes="*.jar"/>
+        </copy>
+
+        <war destfile="${ant.project.name}_demos.war" webxml="demos/web.xml">
+            <fileset dir="demos/www"/>
+        </war>
+    </target>
+
+    <!-- Remove trailing white space in all source files -->
+    <target name="trim-whitespace">
+        <replaceregexp match="[\t ]+$" replace="" flags="gm" byline="true">
+            <fileset dir=".">
+                <include name="**/*.java"/>
+                <include name="**/*.html"/>
+                <include name="**/*.txt"/>
+                <include name="**/*.properties"/>
+                <include name="**/*.xml"/>
+                <include name="**/*.wtkx"/>
+                <include name="**/*.json"/>
+            </fileset>
+        </replaceregexp>
+    </target>
+</project>
