@@ -16,23 +16,20 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<charts:PieChartView wtkx:id="pieChartView"
-    seriesNameKey="name" title="Pie Chart Example"
-    styles="{explodePercentages:{a:0.30}}"
-    xmlns:wtkx="http://pivot.apache.org/wtkx"
-    xmlns:collections="org.apache.pivot.collections"
-    xmlns:content="org.apache.pivot.charts.content"
+<Window title="Charts Demo" maximized="true"
+    xmlns:bxml="http://pivot.apache.org/bxml"
     xmlns:charts="org.apache.pivot.charts"
     xmlns="org.apache.pivot.wtk">
-    <categories>
-	    <charts:ChartView.Category key="a" label="A"/>
-	    <charts:ChartView.Category key="b" label="B"/>
-	    <charts:ChartView.Category key="c" label="C"/>
-    </categories>
+    <Border styles="{padding:6}">
+        <TabPane>
+            <bxml:include src="pie_charts.bxml" bxml:id="pieCharts" TabPane.label="Pie Chart"/>
+            <bxml:include src="bar_charts.bxml" bxml:id="barCharts" TabPane.label="Bar Chart"/>
+            <bxml:include src="line_charts.bxml" bxml:id="lineCharts" TabPane.label="Line Chart"/>
+            <bxml:include src="area_charts.bxml" bxml:id="areaCharts" TabPane.label="Area Chart"/>
+            <bxml:include src="high_low_charts.bxml" bxml:id="highLowCharts" TabPane.label="High Low Chart"/>
+        </TabPane>
+    </Border>
+</Window>
 
-    <chartData>
-        <collections:ArrayList>
-            <content:CategorySeries name="Example Series 1" a="43.2" b="27.9" c="79.5"/>
-        </collections:ArrayList>
-    </chartData>
-</charts:PieChartView>
+
+
