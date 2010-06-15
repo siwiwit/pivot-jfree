@@ -25,7 +25,7 @@ limitations under the License.
     <target name="build" depends="charts, demos"/>
     <target name="clean" depends="charts-clean, demos-clean">
         <delete dir="${folder.lib}"/>
-        <delete file="${ant.project.name}_demos.war"/>
+        <delete file="${ant.project.name}-demos.war"/>
     </target>
 
     <target name="charts">
@@ -95,7 +95,7 @@ limitations under the License.
             <fileset dir="charts/lib" includes="*.jar"/>
         </copy>
 
-        <war destfile="${ant.project.name}_demos.war" webxml="demos/web.xml">
+        <war destfile="${ant.project.name}-demos.war" webxml="demos/web.xml">
             <fileset dir="demos/www"/>
         </war>
     </target>
@@ -109,7 +109,7 @@ limitations under the License.
                 <include name="**/*.txt"/>
                 <include name="**/*.properties"/>
                 <include name="**/*.xml"/>
-                <include name="**/*.wtkx"/>
+                <include name="**/*.bxml"/>
                 <include name="**/*.json"/>
             </fileset>
         </replaceregexp>

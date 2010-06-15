@@ -15,6 +15,7 @@
  */
 package biz.ixnay.pivot.demos.charts.jfree;
 
+import org.apache.pivot.beans.BeanSerializer;
 import org.apache.pivot.charts.PieChartView;
 import org.apache.pivot.charts.content.CategorySeries;
 import org.apache.pivot.collections.ArrayList;
@@ -23,7 +24,6 @@ import org.apache.pivot.wtk.Application;
 import org.apache.pivot.wtk.DesktopApplicationContext;
 import org.apache.pivot.wtk.Display;
 import org.apache.pivot.wtk.Window;
-import org.apache.pivot.wtkx.WTKXSerializer;
 
 public class DynamicDataDemo implements Application {
     private Window window = null;
@@ -31,10 +31,10 @@ public class DynamicDataDemo implements Application {
 
     public void startup(Display display, Map<String, String> properties)
         throws Exception {
-        WTKXSerializer wtkxSerializer = new WTKXSerializer();
-        window = (Window)wtkxSerializer.readObject(this, "dynamic_data_demo.wtkx");
+        BeanSerializer beanSerializer = new BeanSerializer();
+        window = (Window)beanSerializer.readObject(this, "dynamic_data_demo.bxml");
 
-        pieChartView = (PieChartView)wtkxSerializer.get("pieChartView");
+        pieChartView = (PieChartView)beanSerializer.get("pieChartView");
 
         CategorySeries categorySeries = new CategorySeries();
         categorySeries.put("name", "Example Series 1");

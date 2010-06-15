@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Copyright 2010 G. Brown, ixnay.biz.
+Copyright (c) 2009 VMware, Inc.
+Copyright 2009 G. Brown, ixnay.biz.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -15,19 +16,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<Window title="Dynamic Data Demo" maximized="true"
-    xmlns:wtkx="http://pivot.apache.org/wtkx"
+<charts:PieChartView bxml:id="pieChartView"
+    seriesNameKey="name" title="Pie Chart Example"
+    styles="{explodePercentages:{a:0.30}}"
+    xmlns:bxml="http://pivot.apache.org/bxml"
+    xmlns:content="org.apache.pivot.charts.content"
     xmlns:charts="org.apache.pivot.charts"
     xmlns="org.apache.pivot.wtk">
-    <content>
-        <charts:PieChartView wtkx:id="pieChartView"
-            seriesNameKey="name" title="Pie Chart Example"
-            styles="{explodePercentages:{a:0.30}}">
-            <categories>
-                <charts:ChartView.Category key="a" label="A"/>
-                <charts:ChartView.Category key="b" label="B"/>
-                <charts:ChartView.Category key="c" label="C"/>
-            </categories>
-        </charts:PieChartView>
-    </content>
-</Window>
+    <categories>
+	    <charts:ChartView.Category key="a" label="A"/>
+	    <charts:ChartView.Category key="b" label="B"/>
+	    <charts:ChartView.Category key="c" label="C"/>
+    </categories>
+
+    <content:CategorySeries name="Example Series 1" a="43.2" b="27.9" c="79.5"/>
+</charts:PieChartView>

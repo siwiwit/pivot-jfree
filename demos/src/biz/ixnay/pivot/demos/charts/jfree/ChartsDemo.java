@@ -17,6 +17,7 @@
 package biz.ixnay.pivot.demos.charts.jfree;
 
 import org.apache.pivot.beans.BeanAdapter;
+import org.apache.pivot.beans.BeanSerializer;
 import org.apache.pivot.charts.AreaChartView;
 import org.apache.pivot.charts.BarChartView;
 import org.apache.pivot.charts.ChartView;
@@ -34,7 +35,6 @@ import org.apache.pivot.wtk.DesktopApplicationContext;
 import org.apache.pivot.wtk.Display;
 import org.apache.pivot.wtk.Mouse;
 import org.apache.pivot.wtk.Window;
-import org.apache.pivot.wtkx.WTKXSerializer;
 
 public class ChartsDemo implements Application {
     private Window window = null;
@@ -88,31 +88,31 @@ public class ChartsDemo implements Application {
 
     public void startup(Display display, Map<String, String> properties)
         throws Exception {
-        WTKXSerializer wtkxSerializer = new WTKXSerializer();
-        window = (Window)wtkxSerializer.readObject(this, "charts_demo.wtkx");
+        BeanSerializer beanSerializer = new BeanSerializer();
+        window = (Window)beanSerializer.readObject(this, "charts_demo.bxml");
 
-        pieChartView = (PieChartView)wtkxSerializer.get("pieCharts.pieChartView");
+        pieChartView = (PieChartView)beanSerializer.get("pieCharts.pieChartView");
         pieChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
 
-        categoryBarChartView = (BarChartView)wtkxSerializer.get("barCharts.categoryBarChartView");
+        categoryBarChartView = (BarChartView)beanSerializer.get("barCharts.categoryBarChartView");
         categoryBarChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
 
-        xyBarChartView = (BarChartView)wtkxSerializer.get("barCharts.xyBarChartView");
+        xyBarChartView = (BarChartView)beanSerializer.get("barCharts.xyBarChartView");
         xyBarChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
 
-        categoryLineChartView = (LineChartView)wtkxSerializer.get("lineCharts.categoryLineChartView");
+        categoryLineChartView = (LineChartView)beanSerializer.get("lineCharts.categoryLineChartView");
         categoryLineChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
 
-        xyLineChartView = (LineChartView)wtkxSerializer.get("lineCharts.xyLineChartView");
+        xyLineChartView = (LineChartView)beanSerializer.get("lineCharts.xyLineChartView");
         xyLineChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
 
-        categoryAreaChartView = (AreaChartView)wtkxSerializer.get("areaCharts.categoryAreaChartView");
+        categoryAreaChartView = (AreaChartView)beanSerializer.get("areaCharts.categoryAreaChartView");
         categoryAreaChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
 
-        xyAreaChartView = (AreaChartView)wtkxSerializer.get("areaCharts.xyAreaChartView");
+        xyAreaChartView = (AreaChartView)beanSerializer.get("areaCharts.xyAreaChartView");
         xyAreaChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
 
-        highLowChartView = (HighLowChartView)wtkxSerializer.get("highLowCharts.highLowChartView");
+        highLowChartView = (HighLowChartView)beanSerializer.get("highLowCharts.highLowChartView");
         highLowChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
 
         window.open(display);
