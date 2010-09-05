@@ -21,11 +21,17 @@ limitations under the License.
     xmlns:content="org.apache.pivot.charts.content"
     xmlns:charts="org.apache.pivot.charts"
     xmlns="org.apache.pivot.wtk">
-    <charts:BarChartView bxml:id="categoryBarChartView" TabPane.label="Category"
+    <charts:BarChartView TabPane.tabData="Category"
         seriesNameKey="name" title="Category Bar Chart Example"
         horizontalAxisLabel="Categories" verticalAxisLabel="Values"
         showLegend="true"
         styles="{stacked:true, threeDimensional:true}">
+        <componentMouseButtonListeners>
+        function mouseClick(component, button, x, y, count) {
+            component.window.showSelectionMessage(component, x, y);
+        }
+        </componentMouseButtonListeners>
+
         <categories>
             <charts:ChartView.Category key="a" label="A"/>
             <charts:ChartView.Category key="b" label="B"/>
@@ -37,9 +43,15 @@ limitations under the License.
         <content:CategorySeries name="Example Series 3" a="79.5" b="27.9" c="43.2"/>
     </charts:BarChartView>
 
-    <charts:BarChartView bxml:id="xyBarChartView" TabPane.label="XY"
+    <charts:BarChartView TabPane.tabData="XY"
         seriesNameKey="name" title="XY Bar Chart Example"
         horizontalAxisLabel="X" verticalAxisLabel="Y">
+        <componentMouseButtonListeners>
+        function mouseClick(component, button, x, y, count) {
+            component.window.showSelectionMessage(component, x, y);
+        }
+        </componentMouseButtonListeners>
+
         <content:ValueSeries name="Example Series 1">
             <content:Interval x="1.0" y="1.0" width="2"/>
             <content:Interval x="2.0" y="4.0" width="1"/>

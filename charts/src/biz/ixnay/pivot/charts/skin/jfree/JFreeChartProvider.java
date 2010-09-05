@@ -31,18 +31,18 @@ import org.apache.pivot.wtk.Skin;
  * @author gbrown
  */
 public class JFreeChartProvider implements Provider {
-    public Class<? extends Skin> getSkinClass(Class<? extends ChartView> chartViewClass) {
+    public Class<? extends Skin> getSkinClass(Class<? extends ChartView> componentClass) {
         Class<? extends Skin> skinClass;
 
-        if (chartViewClass == AreaChartView.class) {
+        if (componentClass == AreaChartView.class) {
             skinClass = AreaChartViewSkin.class;
-        } else if (chartViewClass == BarChartView.class) {
+        } else if (componentClass == BarChartView.class) {
             skinClass = BarChartViewSkin.class;
-        } else if (chartViewClass == HighLowChartView.class) {
+        } else if (componentClass == HighLowChartView.class) {
             skinClass = HighLowChartViewSkin.class;
-        } else if (chartViewClass == LineChartView.class) {
+        } else if (componentClass == LineChartView.class) {
             skinClass = LineChartViewSkin.class;
-        } else if (chartViewClass == PieChartView.class) {
+        } else if (componentClass == PieChartView.class) {
             skinClass = PieChartViewSkin.class;
         } else {
             throw new IllegalArgumentException();

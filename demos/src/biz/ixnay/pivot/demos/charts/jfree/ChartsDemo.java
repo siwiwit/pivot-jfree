@@ -16,123 +16,33 @@
  */
 package biz.ixnay.pivot.demos.charts.jfree;
 
-import org.apache.pivot.beans.BeanAdapter;
-import org.apache.pivot.beans.BeanSerializer;
-import org.apache.pivot.charts.AreaChartView;
-import org.apache.pivot.charts.BarChartView;
 import org.apache.pivot.charts.ChartView;
-import org.apache.pivot.charts.HighLowChartView;
-import org.apache.pivot.charts.LineChartView;
-import org.apache.pivot.charts.PieChartView;
-import org.apache.pivot.collections.Dictionary;
 import org.apache.pivot.collections.List;
-import org.apache.pivot.collections.Map;
-import org.apache.pivot.wtk.Alert;
-import org.apache.pivot.wtk.Application;
-import org.apache.pivot.wtk.Component;
-import org.apache.pivot.wtk.ComponentMouseButtonListener;
-import org.apache.pivot.wtk.DesktopApplicationContext;
-import org.apache.pivot.wtk.Display;
-import org.apache.pivot.wtk.Mouse;
+import org.apache.pivot.json.JSON;
+import org.apache.pivot.wtk.Prompt;
 import org.apache.pivot.wtk.Window;
 
-public class ChartsDemo implements Application {
-    private Window window = null;
-    private PieChartView pieChartView = null;
-    private BarChartView categoryBarChartView = null;
-    private BarChartView xyBarChartView = null;
-    private LineChartView categoryLineChartView = null;
-    private LineChartView xyLineChartView = null;
-    private AreaChartView categoryAreaChartView = null;
-    private AreaChartView xyAreaChartView = null;
-    private HighLowChartView highLowChartView = null;
+public class ChartsDemo extends Window {
+    public void showSelectionMessage(ChartView chartView, int x, int y) {
+        ChartView.Element element = chartView.getElementAt(x, y);
 
-    private ComponentMouseButtonListener chartViewMouseButtonListener =
-        new ComponentMouseButtonListener.Adapter() {
-        @SuppressWarnings("unchecked")
-        public boolean mouseClick(Component component, Mouse.Button button, int x, int y, int count) {
-            ChartView chartView = (ChartView)component;
-            ChartView.Element element = chartView.getElementAt(x, y);
+        if (element != null) {
+            ChartView.CategorySequence categories = chartView.getCategories();
+            int elementIndex = element.getElementIndex();
 
-            if (element != null) {
-                int seriesIndex = element.getSeriesIndex();
-                int elementIndex = element.getElementIndex();
-
-                String elementLabel;
-                ChartView.CategorySequence categories = chartView.getCategories();
-                if (categories.getLength() > 0) {
-                    elementLabel = "\"" + chartView.getCategories().get(elementIndex).getLabel() + "\"";
-                } else {
-                    elementLabel = Integer.toString(elementIndex);
-                }
-
-                List<?> chartData = chartView.getChartData();
-                Object series = chartData.get(seriesIndex);
-
-                Dictionary<String, Object> seriesDictionary;
-                if (series instanceof Dictionary<?, ?>) {
-                    seriesDictionary = (Dictionary<String, Object>)series;
-                } else {
-                    seriesDictionary = new BeanAdapter(series);
-                }
-
-                String seriesNameKey = chartView.getSeriesNameKey();
-
-                Alert.alert("You clicked element " + elementLabel + " in \""
-                    + seriesDictionary.get(seriesNameKey) + "\".", window);
+            String elementLabel;
+            if (categories.getLength() > 0) {
+                elementLabel = "\"" + chartView.getCategories().get(elementIndex).getLabel() + "\"";
+            } else {
+                elementLabel = Integer.toString(elementIndex);
             }
 
-            return false;
+            List<?> chartData = chartView.getChartData();
+            Object series = chartData.get(element.getSeriesIndex());
+
+            String seriesNameKey = chartView.getSeriesNameKey();
+            Prompt.prompt("You clicked element " + elementLabel + " in \""
+                + JSON.get(series, seriesNameKey) + "\".", this);
         }
-    };
-
-    public void startup(Display display, Map<String, String> properties)
-        throws Exception {
-        BeanSerializer beanSerializer = new BeanSerializer();
-        window = (Window)beanSerializer.readObject(this, "charts_demo.bxml");
-
-        pieChartView = (PieChartView)beanSerializer.get("pieCharts.pieChartView");
-        pieChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
-
-        categoryBarChartView = (BarChartView)beanSerializer.get("barCharts.categoryBarChartView");
-        categoryBarChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
-
-        xyBarChartView = (BarChartView)beanSerializer.get("barCharts.xyBarChartView");
-        xyBarChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
-
-        categoryLineChartView = (LineChartView)beanSerializer.get("lineCharts.categoryLineChartView");
-        categoryLineChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
-
-        xyLineChartView = (LineChartView)beanSerializer.get("lineCharts.xyLineChartView");
-        xyLineChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
-
-        categoryAreaChartView = (AreaChartView)beanSerializer.get("areaCharts.categoryAreaChartView");
-        categoryAreaChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
-
-        xyAreaChartView = (AreaChartView)beanSerializer.get("areaCharts.xyAreaChartView");
-        xyAreaChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
-
-        highLowChartView = (HighLowChartView)beanSerializer.get("highLowCharts.highLowChartView");
-        highLowChartView.getComponentMouseButtonListeners().add(chartViewMouseButtonListener);
-
-        window.open(display);
-    }
-
-    public boolean shutdown(boolean optional) {
-        if (window != null) {
-            window.close();
-        }
-
-        return false;
-    }
-
-    public void suspend() {
-    }
-
-    public void resume() {
-    }
-
-    public static void main(String[] args) {
-        DesktopApplicationContext.main(ChartsDemo.class, args);
     }
 }
