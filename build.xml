@@ -22,16 +22,17 @@ limitations under the License.
 
     <property file="build.properties"/>
 
-    <target name="build" depends="charts, demos"/>
-    <target name="clean" depends="charts-clean, demos-clean">
+    <target name="build" depends="provider, demos"/>
+    <target name="clean" depends="provider-clean, demos-clean">
         <delete dir="${folder.lib}"/>
         <delete file="${ant.project.name}-demos.war"/>
     </target>
 
-    <target name="charts">
-        <mkdir dir="charts/${folder.bin}"/>
-        <javac srcdir="charts/src"
-            destDir="charts/${folder.bin}"
+    <target name="provider">
+        <mkdir dir="provider/${folder.bin}"/>
+        <javac srcdir="provider/src"
+            destDir="provider/${folder.bin}"
+            includeantruntime="false"
             optimize="true"
             deprecation="true"
             debug="false"
@@ -40,19 +41,20 @@ limitations under the License.
             failonerror="true">
             <compilerarg value="-Xlint"/>
             <classpath>
-                <fileset dir="charts/lib" includes="**/*.jar"/>
+                <fileset dir="provider/lib" includes="**/*.jar"/>
             </classpath>
         </javac>
     </target>
 
-    <target name="charts-clean">
-        <delete dir="charts/${folder.bin}"/>
+    <target name="provider-clean">
+        <delete dir="provider/${folder.bin}"/>
     </target>
 
-    <target name="demos" depends="charts">
+    <target name="demos" depends="provider">
         <mkdir dir="demos/${folder.bin}"/>
         <javac srcdir="demos/src"
             destDir="demos/${folder.bin}"
+            includeantruntime="false"
             optimize="true"
             deprecation="true"
             debug="false"
@@ -61,7 +63,7 @@ limitations under the License.
             failonerror="true">
             <compilerarg line="-Xlint"/>
             <classpath>
-                <fileset dir="charts/lib" includes="**/*.jar"/>
+                <fileset dir="provider/lib" includes="**/*.jar"/>
             </classpath>
         </javac>
     </target>
@@ -76,8 +78,8 @@ limitations under the License.
         <mkdir dir="${folder.lib}"/>
 
         <jar jarfile="${folder.lib}/${ant.project.name}-${version}.jar">
-            <fileset dir="charts/${folder.bin}"/>
-            <fileset dir="charts/src">
+            <fileset dir="provider/${folder.bin}"/>
+            <fileset dir="provider/src">
                 <exclude name="**/*.java"/>
                 <exclude name="**/package.html"/>
             </fileset>
@@ -92,7 +94,7 @@ limitations under the License.
         </jar>
 
         <copy todir="${folder.lib}">
-            <fileset dir="charts/lib" includes="*.jar"/>
+            <fileset dir="provider/lib" includes="*.jar"/>
         </copy>
 
         <war destfile="${ant.project.name}-demos.war" webxml="demos/web.xml">
