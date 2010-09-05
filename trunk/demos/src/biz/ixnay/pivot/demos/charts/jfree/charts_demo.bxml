@@ -16,20 +16,17 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<Window title="Charts Demo" maximized="true"
+<jfree:ChartsDemo title="Charts Demo" maximized="true"
     xmlns:bxml="http://pivot.apache.org/bxml"
-    xmlns:charts="org.apache.pivot.charts"
+    xmlns:jfree="biz.ixnay.pivot.demos.charts.jfree"
     xmlns="org.apache.pivot.wtk">
     <Border styles="{padding:6}">
         <TabPane>
-            <bxml:include src="pie_charts.bxml" bxml:id="pieCharts" TabPane.label="Pie Chart"/>
-            <bxml:include src="bar_charts.bxml" bxml:id="barCharts" TabPane.label="Bar Chart"/>
-            <bxml:include src="line_charts.bxml" bxml:id="lineCharts" TabPane.label="Line Chart"/>
-            <bxml:include src="area_charts.bxml" bxml:id="areaCharts" TabPane.label="Area Chart"/>
-            <bxml:include src="high_low_charts.bxml" bxml:id="highLowCharts" TabPane.label="High Low Chart"/>
+            <bxml:include src="pie_charts.bxml" TabPane.tabData="Pie Chart"/>
+            <bxml:include src="bar_charts.bxml" TabPane.tabData="Bar Chart"/>
+            <bxml:include src="line_charts.bxml" TabPane.tabData="Line Chart"/>
+            <bxml:include src="area_charts.bxml" TabPane.tabData="Area Chart"/>
+            <bxml:include src="high_low_charts.bxml" TabPane.tabData="High Low Chart"/>
         </TabPane>
     </Border>
-</Window>
-
-
-
+</jfree:ChartsDemo>

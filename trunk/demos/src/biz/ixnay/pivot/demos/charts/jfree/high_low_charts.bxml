@@ -16,14 +16,19 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<charts:HighLowChartView bxml:id="highLowChartView"
-    seriesNameKey="name" title="High Low Chart Example"
+<charts:HighLowChartView seriesNameKey="name" title="High Low Chart Example"
     horizontalAxisLabel="Date" verticalAxisLabel="Value"
     styles="{candlestick:true}"
     xmlns:bxml="http://pivot.apache.org/bxml"
     xmlns:content="org.apache.pivot.charts.content"
     xmlns:charts="org.apache.pivot.charts"
     xmlns="org.apache.pivot.wtk">
+    <componentMouseButtonListeners>
+    function mouseClick(component, button, x, y, count) {
+        component.window.showSelectionMessage(component, x, y);
+    }
+    </componentMouseButtonListeners>
+
     <content:ValueSeries name="Example Series 1">
         <content:Candlestick date="8/26/2008" open="155.84" high="178.50" low="155.84" close="165.00"/>
         <content:Candlestick date="8/27/2008" open="172.84" high="173.50" low="169.04" close="174.00"/>

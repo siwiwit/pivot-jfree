@@ -16,13 +16,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<charts:PieChartView bxml:id="pieChartView"
-    seriesNameKey="name" title="Pie Chart Example"
+<charts:PieChartView seriesNameKey="name" title="Pie Chart Example"
     styles="{explodePercentages:{a:0.30}}"
     xmlns:bxml="http://pivot.apache.org/bxml"
     xmlns:content="org.apache.pivot.charts.content"
     xmlns:charts="org.apache.pivot.charts"
     xmlns="org.apache.pivot.wtk">
+    <componentMouseButtonListeners>
+    function mouseClick(component, button, x, y, count) {
+        component.window.showSelectionMessage(component, x, y);
+    }
+    </componentMouseButtonListeners>
+
     <categories>
 	    <charts:ChartView.Category key="a" label="A"/>
 	    <charts:ChartView.Category key="b" label="B"/>
