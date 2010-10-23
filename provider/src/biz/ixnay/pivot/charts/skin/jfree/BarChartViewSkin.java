@@ -39,7 +39,7 @@ import org.apache.pivot.collections.List;
 public class BarChartViewSkin extends JFreeChartViewSkin {
     private boolean stacked = false;
     private boolean threeDimensional = false;
-    private CategoryLabelPositions domainAxisCategoryLabelPositions = CategoryLabelPositions.STANDARD;
+    private double categoryLabelRotation = 0;
 
     public ChartView.Element getElementAt(int x, int y) {
         ChartView.Element element = null;
@@ -99,7 +99,9 @@ public class BarChartViewSkin extends JFreeChartViewSkin {
 
             CategoryPlot plot = (CategoryPlot)chart.getPlot();
             CategoryAxis domainAxis = plot.getDomainAxis();
-            domainAxis.setCategoryLabelPositions(domainAxisCategoryLabelPositions);
+            CategoryLabelPositions categoryLabelPositions =
+            	CategoryLabelPositions.createUpRotationLabelPositions(categoryLabelRotation);
+            domainAxis.setCategoryLabelPositions(categoryLabelPositions);
         } else {
             // TODO Make the dateAxis argument a style property
             chart = ChartFactory.createXYBarChart(title, horizontalAxisLabel, false, verticalAxisLabel,
@@ -128,12 +130,12 @@ public class BarChartViewSkin extends JFreeChartViewSkin {
         repaintComponent();
     }
 
-    public CategoryLabelPositions getDomainAxisCategoryLabelPositions() {
-    	return domainAxisCategoryLabelPositions;
+    public double getCategoryLabelRotation() {
+    	return categoryLabelRotation;
     }
 
-    public void setDomainAxisCategoryLabelPositions(CategoryLabelPositions domainAxisCategoryLabelPositions) {
-    	this.domainAxisCategoryLabelPositions = domainAxisCategoryLabelPositions;
+    public void setCategoryLabelRotation(double categoryLabelRotation) {
+    	this.categoryLabelRotation = categoryLabelRotation;
     	repaintComponent();
     }
 }
