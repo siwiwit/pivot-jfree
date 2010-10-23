@@ -18,9 +18,12 @@ package biz.ixnay.pivot.charts.skin.jfree;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.CategoryLabelPositions;
 import org.jfree.chart.entity.ChartEntity;
 import org.jfree.chart.entity.CategoryItemEntity;
 import org.jfree.chart.entity.XYItemEntity;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 
@@ -36,6 +39,7 @@ import org.apache.pivot.collections.List;
 public class BarChartViewSkin extends JFreeChartViewSkin {
     private boolean stacked = false;
     private boolean threeDimensional = false;
+    private CategoryLabelPositions domainAxisCategoryLabelPositions = CategoryLabelPositions.STANDARD;
 
     public ChartView.Element getElementAt(int x, int y) {
         ChartView.Element element = null;
@@ -92,6 +96,10 @@ public class BarChartViewSkin extends JFreeChartViewSkin {
                 chart = ChartFactory.createBarChart(title, horizontalAxisLabel, verticalAxisLabel,
                     dataset, PlotOrientation.VERTICAL, showLegend, false, false);
             }
+
+            CategoryPlot plot = (CategoryPlot)chart.getPlot();
+            CategoryAxis domainAxis = plot.getDomainAxis();
+            domainAxis.setCategoryLabelPositions(domainAxisCategoryLabelPositions);
         } else {
             // TODO Make the dateAxis argument a style property
             chart = ChartFactory.createXYBarChart(title, horizontalAxisLabel, false, verticalAxisLabel,
@@ -118,5 +126,14 @@ public class BarChartViewSkin extends JFreeChartViewSkin {
     public void setThreeDimensional(boolean threeDimensional) {
         this.threeDimensional = threeDimensional;
         repaintComponent();
+    }
+
+    public CategoryLabelPositions getDomainAxisCategoryLabelPositions() {
+    	return domainAxisCategoryLabelPositions;
+    }
+
+    public void setDomainAxisCategoryLabelPositions(CategoryLabelPositions domainAxisCategoryLabelPositions) {
+    	this.domainAxisCategoryLabelPositions = domainAxisCategoryLabelPositions;
+    	repaintComponent();
     }
 }
