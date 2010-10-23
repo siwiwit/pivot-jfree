@@ -18,9 +18,12 @@ package biz.ixnay.pivot.charts.skin.jfree;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.CategoryLabelPositions;
 import org.jfree.chart.entity.CategoryItemEntity;
 import org.jfree.chart.entity.ChartEntity;
 import org.jfree.chart.entity.XYItemEntity;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 
@@ -35,6 +38,7 @@ import org.apache.pivot.collections.List;
  */
 public class LineChartViewSkin extends JFreeChartViewSkin {
     private boolean threeDimensional = false;
+    private double categoryLabelRotation = 0;
 
     public ChartView.Element getElementAt(int x, int y) {
         ChartView.Element element = null;
@@ -84,6 +88,12 @@ public class LineChartViewSkin extends JFreeChartViewSkin {
                 chart = ChartFactory.createLineChart(title, horizontalAxisLabel, verticalAxisLabel,
                     dataset, PlotOrientation.VERTICAL, showLegend, false, false);
             }
+
+            CategoryPlot plot = (CategoryPlot)chart.getPlot();
+            CategoryAxis domainAxis = plot.getDomainAxis();
+            CategoryLabelPositions categoryLabelPositions =
+            	CategoryLabelPositions.createUpRotationLabelPositions(categoryLabelRotation);
+            domainAxis.setCategoryLabelPositions(categoryLabelPositions);
         } else {
             chart = ChartFactory.createXYLineChart(title, horizontalAxisLabel, verticalAxisLabel,
                 new XYSeriesDataset(seriesNameKey, chartData),
@@ -100,5 +110,14 @@ public class LineChartViewSkin extends JFreeChartViewSkin {
     public void setThreeDimensional(boolean threeDimensional) {
         this.threeDimensional = threeDimensional;
         repaintComponent();
+    }
+
+    public double getCategoryLabelRotation() {
+    	return categoryLabelRotation;
+    }
+
+    public void setCategoryLabelRotation(double categoryLabelRotation) {
+    	this.categoryLabelRotation = categoryLabelRotation;
+    	repaintComponent();
     }
 }
