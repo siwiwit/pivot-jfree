@@ -100,7 +100,7 @@ public class BarChartViewSkin extends JFreeChartViewSkin {
             CategoryPlot plot = (CategoryPlot)chart.getPlot();
             CategoryAxis domainAxis = plot.getDomainAxis();
             CategoryLabelPositions categoryLabelPositions =
-            	CategoryLabelPositions.createUpRotationLabelPositions(categoryLabelRotation);
+                CategoryLabelPositions.createUpRotationLabelPositions(categoryLabelRotation);
             domainAxis.setCategoryLabelPositions(categoryLabelPositions);
         } else {
             // TODO Make the dateAxis argument a style property
@@ -131,11 +131,11 @@ public class BarChartViewSkin extends JFreeChartViewSkin {
     }
 
     public double getCategoryLabelRotation() {
-    	return categoryLabelRotation;
+        return categoryLabelRotation;
     }
 
     public void setCategoryLabelRotation(double categoryLabelRotation) {
-    	this.categoryLabelRotation = categoryLabelRotation;
-    	repaintComponent();
+        this.categoryLabelRotation = categoryLabelRotation;
+        repaintComponent();
     }
 }

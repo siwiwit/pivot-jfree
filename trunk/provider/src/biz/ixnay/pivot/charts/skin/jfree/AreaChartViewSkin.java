@@ -37,7 +37,7 @@ import org.apache.pivot.collections.List;
  * @author gbrown
  */
 public class AreaChartViewSkin extends JFreeChartViewSkin {
-	private double categoryLabelRotation = 0;
+    private double categoryLabelRotation = 0;
 
     public ChartView.Element getElementAt(int x, int y) {
         ChartView.Element element = null;
@@ -85,7 +85,7 @@ public class AreaChartViewSkin extends JFreeChartViewSkin {
             CategoryPlot plot = (CategoryPlot)chart.getPlot();
             CategoryAxis domainAxis = plot.getDomainAxis();
             CategoryLabelPositions categoryLabelPositions =
-            	CategoryLabelPositions.createUpRotationLabelPositions(categoryLabelRotation);
+                CategoryLabelPositions.createUpRotationLabelPositions(categoryLabelRotation);
             domainAxis.setCategoryLabelPositions(categoryLabelPositions);
         } else {
             chart = ChartFactory.createXYAreaChart(title, horizontalAxisLabel, verticalAxisLabel,
@@ -97,11 +97,11 @@ public class AreaChartViewSkin extends JFreeChartViewSkin {
     }
 
     public double getCategoryLabelRotation() {
-    	return categoryLabelRotation;
+        return categoryLabelRotation;
     }
 
     public void setCategoryLabelRotation(double categoryLabelRotation) {
-    	this.categoryLabelRotation = categoryLabelRotation;
-    	repaintComponent();
+        this.categoryLabelRotation = categoryLabelRotation;
+        repaintComponent();
     }
 }
