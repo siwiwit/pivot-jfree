@@ -92,7 +92,7 @@ public class LineChartViewSkin extends JFreeChartViewSkin {
             CategoryPlot plot = (CategoryPlot)chart.getPlot();
             CategoryAxis domainAxis = plot.getDomainAxis();
             CategoryLabelPositions categoryLabelPositions =
-            	CategoryLabelPositions.createUpRotationLabelPositions(categoryLabelRotation);
+                CategoryLabelPositions.createUpRotationLabelPositions(categoryLabelRotation);
             domainAxis.setCategoryLabelPositions(categoryLabelPositions);
         } else {
             chart = ChartFactory.createXYLineChart(title, horizontalAxisLabel, verticalAxisLabel,
@@ -113,11 +113,11 @@ public class LineChartViewSkin extends JFreeChartViewSkin {
     }
 
     public double getCategoryLabelRotation() {
-    	return categoryLabelRotation;
+        return categoryLabelRotation;
     }
 
     public void setCategoryLabelRotation(double categoryLabelRotation) {
-    	this.categoryLabelRotation = categoryLabelRotation;
-    	repaintComponent();
+        this.categoryLabelRotation = categoryLabelRotation;
+        repaintComponent();
     }
 }
