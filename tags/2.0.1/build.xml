@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (c) 2009 VMware, Inc.
+Copyright 2009 G. Brown, ixnay.biz.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<project name="pivot-jfree" default="build">
+    <property name="folder.bin" value="ant-bin"/>
+    <property name="folder.lib" value="demos/www/lib"/>
+
+    <property file="build.properties"/>
+
+    <target name="build" depends="provider, demos"/>
+    <target name="clean" depends="provider-clean, demos-clean">
+        <delete dir="${folder.lib}"/>
+        <delete file="${ant.project.name}-demos.war"/>
+    </target>
+
+    <target name="provider">
+        <mkdir dir="provider/${folder.bin}"/>
+        <javac srcdir="provider/src"
+            destDir="provider/${folder.bin}"
+            includeantruntime="false"
+            optimize="true"
+            deprecation="true"
+            debug="false"
+            target="1.6"
+            encoding="UTF-8"
+            failonerror="true">
+            <compilerarg value="-Xlint"/>
+            <classpath>
+                <fileset dir="provider/lib" includes="**/*.jar"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="provider-clean">
+        <delete dir="provider/${folder.bin}"/>
+    </target>
+
+    <target name="demos" depends="provider">
+        <mkdir dir="demos/${folder.bin}"/>
+        <javac srcdir="demos/src"
+            destDir="demos/${folder.bin}"
+            includeantruntime="false"
+            optimize="true"
+            deprecation="true"
+            debug="false"
+            target="1.6"
+            encoding="UTF-8"
+            failonerror="true">
+            <compilerarg line="-Xlint"/>
+            <classpath>
+                <fileset dir="provider/lib" includes="**/*.jar"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="demos-clean">
+        <delete dir="demos/${folder.bin}"/>
+    </target>
+
+    <!-- Generate deployment files -->
+    <target name="deploy"
+        depends="clean, build">
+        <mkdir dir="${folder.lib}"/>
+
+        <jar jarfile="${folder.lib}/${ant.project.name}-${version}.jar">
+            <fileset dir="provider/${folder.bin}"/>
+            <fileset dir="provider/src">
+                <exclude name="**/*.java"/>
+                <exclude name="**/package.html"/>
+            </fileset>
+        </jar>
+
+        <jar jarfile="${folder.lib}/${ant.project.name}-demos-${version}.jar">
+            <fileset dir="demos/${folder.bin}"/>
+            <fileset dir="demos/src">
+                <exclude name="**/*.java"/>
+                <exclude name="**/package.html"/>
+            </fileset>
+        </jar>
+
+        <copy todir="${folder.lib}">
+            <fileset dir="provider/lib" includes="*.jar"/>
+        </copy>
+
+        <war destfile="${ant.project.name}-demos.war" webxml="demos/web.xml">
+            <fileset dir="demos/www"/>
+        </war>
+    </target>
+
+    <!-- Remove trailing white space in all source files -->
+    <target name="trim-whitespace">
+        <fileset id="trimfiles" dir=".">
+            <include name="BUILD"/>
+            <include name="LICENSE"/>
+            <include name="NOTICE"/>
+            <include name="README"/>
+            <include name="RELEASE-NOTES"/>
+            <include name="**/*.java"/>
+            <include name="**/*.html"/>
+            <include name="**/*.jsp"/>
+            <include name="**/*.txt"/>
+            <include name="**/*.properties"/>
+            <include name="**/*.xml"/>
+            <include name="**/*.bxml"/>
+            <include name="**/*.json"/>
+            <include name="**/*.groovy"/>
+            <include name="**/*.scala"/>
+        </fileset>
+        <replaceregexp match="[\t]" replace="    " flags="gm" byline="true">
+            <fileset refid="trimfiles"/>
+        </replaceregexp>
+        <replaceregexp match="[\t ]+$" replace="" flags="gm" byline="true">
+            <fileset refid="trimfiles"/>
+        </replaceregexp>
+    </target>
+
+</project>
