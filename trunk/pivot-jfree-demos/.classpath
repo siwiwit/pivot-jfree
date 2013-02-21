@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/pivot-jfree-provider/lib/jcommon-1.0.17.jar" sourcepath="/pivot-jfree-provider/lib_src/jcommon-1.0.17-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/pivot-jfree-provider/lib_doc/jcommon-1.0.17-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/pivot-jfree-provider/lib/jfreechart-1.0.14.jar" sourcepath="/pivot-jfree-provider/lib_src/jfreechart-1.0.14-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/pivot-jfree-provider/lib_doc/jfreechart-1.0.14-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/pivot-jfree-provider"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/charts"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/core"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/wtk"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/wtk-terra"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

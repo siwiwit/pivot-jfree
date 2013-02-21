@@ -1,0 +1,16 @@
+
+Pivot-JFree-Provider
+====================
+
+This is the implementation of the provider for Pivot-JFree.
+
+
+Information
+===========
+
+This project is built from ant (in the parent folder), but to simplify development and debugging there are even
+eclipse project files (.project and .classpath), and in this case Pivot jars are not used (they are used by the ant build)
+but it references usual Pivot projects in the same workspace (charts, core, wtk, wtk-terra).
+
+In the lib folder there are required dependencies (and in the lib_doc and lib_src related javadoc and src jars),
+downloaded from a Maven repository, and here only to help development inside eclipse.

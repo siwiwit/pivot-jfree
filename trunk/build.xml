@@ -24,8 +24,10 @@ limitations under the License.
     </path>
 
     <!-- Properties that affect the directories that are created as part of the build -->
-    <property name="folder.bin" value="ant-bin"/>
-    <property name="folder.lib" value="demos/www/lib"/>
+    <property name="folder.demos"    value="${ant.project.name}-demos"/>
+    <property name="folder.provider" value="${ant.project.name}-provider"/>
+    <property name="folder.bin"      value="ant-bin"/>
+    <property name="folder.lib"      value="${folder.demos}/www/lib"/>
 
     <!-- Dynamic properties -->
     <property file="build.properties"/>
@@ -113,9 +115,9 @@ limitations under the License.
     <target name="build" depends="provider, demos"/>
 
     <target name="provider">
-        <mkdir dir="provider/${folder.bin}"/>
-        <javac srcdir="provider/src"
-            destDir="provider/${folder.bin}"
+        <mkdir dir="${folder.provider}/${folder.bin}"/>
+        <javac srcdir="${folder.provider}/src"
+            destDir="${folder.provider}/${folder.bin}"
             includejavaruntime="true"
             includeantruntime="false"
             deprecation="${compiler.deprecation}"
@@ -127,19 +129,19 @@ limitations under the License.
 		>
             <compilerarg line="${compiler.arg}"/>
             <classpath>
-                <fileset dir="provider/lib" includes="**/*.jar"/>
+                <fileset dir="${folder.provider}/lib" includes="**/*.jar"/>
             </classpath>
         </javac>
     </target>
 
     <target name="provider-clean">
-        <delete dir="provider/${folder.bin}"/>
+        <delete dir="${folder.provider}/${folder.bin}"/>
     </target>
 
     <target name="demos" depends="provider">
-        <mkdir dir="demos/${folder.bin}"/>
-        <javac srcdir="demos/src"
-            destDir="demos/${folder.bin}"
+        <mkdir dir="${folder.demos}/${folder.bin}"/>
+        <javac srcdir="${folder.demos}/src"
+            destDir="${folder.demos}/${folder.bin}"
             includejavaruntime="true"
             includeantruntime="false"
             deprecation="${compiler.deprecation}"
@@ -151,13 +153,13 @@ limitations under the License.
 		>
             <compilerarg line="${compiler.arg}"/>
             <classpath>
-                <fileset dir="provider/lib" includes="**/*.jar"/>
+                <fileset dir="${folder.provider}/lib" includes="**/*.jar"/>
             </classpath>
         </javac>
     </target>
 
     <target name="demos-clean">
-        <delete dir="demos/${folder.bin}"/>
+        <delete dir="${folder.demos}/${folder.bin}"/>
     </target>
 
     <!-- Generate deployment files -->
@@ -166,27 +168,27 @@ limitations under the License.
         <mkdir dir="${folder.lib}"/>
 
         <jar jarfile="${folder.lib}/${ant.project.name}-${version}.jar">
-            <fileset dir="provider/${folder.bin}"/>
-            <fileset dir="provider/src">
+            <fileset dir="${folder.provider}/${folder.bin}"/>
+            <fileset dir="${folder.provider}/src">
                 <exclude name="**/*.java"/>
                 <exclude name="**/package.html"/>
             </fileset>
         </jar>
 
         <jar jarfile="${folder.lib}/${ant.project.name}-demos-${version}.jar">
-            <fileset dir="demos/${folder.bin}"/>
-            <fileset dir="demos/src">
+            <fileset dir="${folder.demos}/${folder.bin}"/>
+            <fileset dir="${folder.demos}/src">
                 <exclude name="**/*.java"/>
                 <exclude name="**/package.html"/>
             </fileset>
         </jar>
 
         <copy todir="${folder.lib}">
-            <fileset dir="provider/lib" includes="*.jar"/>
+            <fileset dir="${folder.provider}/lib" includes="*.jar"/>
         </copy>
 
-        <war destfile="${ant.project.name}-demos.war" webxml="demos/web.xml">
-            <fileset dir="demos/www"/>
+        <war destfile="${ant.project.name}-demos.war" webxml="${folder.demos}/web.xml">
+            <fileset dir="${folder.demos}/www"/>
         </war>
     </target>
 
