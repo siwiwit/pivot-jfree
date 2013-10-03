@@ -1,8 +1,8 @@
 System Requirements
 ===================
 
-* JDK 1.6 or greater (http://java.sun.com/)
-* Ant 1.7 or greater (http://ant.apache.org/)
+* JDK 1.7 or greater (http://java.sun.com/)
+* Ant 1.8 or greater (http://ant.apache.org/)
 * JUnit 4.3 or greater (http://www.junit.org/)
 
 Project Set-Up
@@ -19,7 +19,7 @@ Building Pivot-JFree
 
 * To get some environmental info:
 
-  $ ant 
+  $ ant
 
 * To compile all Pivot-JFree source files into binary class files:
 
