@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright (c) 2009 VMware, Inc.
+Copyright 2009 G. Brown, ixnay.biz.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<project name="pivot-jfree" default="environment-info"
+    xmlns:artifact="antlib:org.apache.maven.artifact.ant"
+>
+    <path id="classpath.javalib">
+        <fileset dir="${java.home}/lib" includes="**/*.jar"/>
+    </path>
+
+    <!-- Properties that affect the directories that are created as part of the build -->
+    <property name="folder.demos"    value="${ant.project.name}-demos"/>
+    <property name="folder.provider" value="${ant.project.name}-provider"/>
+    <property name="folder.bin"      value="ant-bin"/>
+    <property name="folder.lib"      value="${folder.demos}/www/lib"/>
+
+    <!-- Dynamic properties -->
+    <property file="build.properties"/>
+
+
+	<sequential>
+		<!-- JDK version check -->
+		<fail>
+			<condition>
+				<not>
+					<or>
+						<equals arg1="${ant.java.version}" arg2="1.6"/>
+						<equals arg1="${ant.java.version}" arg2="1.7"/>
+					</or>
+				</not>
+			</condition>
+			<![CDATA[
+			Error:
+
+			Building Pivot-JFree requires JDK 1.6 or greater. Please see the
+			BUILD file for more information.
+			]]>
+		</fail>
+
+		<!-- Ant version check -->
+		<fail>
+			<condition>
+				<not>
+					<or>
+						<contains string="${ant.version}" substring="1.7"/>
+						<contains string="${ant.version}" substring="1.8"/>
+					</or>
+				</not>
+			</condition>
+			<![CDATA[
+			Error:
+
+			Building Pivot-JFree requires Apache Ant 1.7 or greater. Please see the BUILD
+			file for more information.
+			]]>
+		</fail>
+
+		<!-- JUnit check -->
+		<fail>
+			<condition>
+				<not>
+					<available classname="org.junit.Test">
+						<classpath refid="classpath.javalib" />
+					</available>
+				</not>
+			</condition>
+			<![CDATA[
+			Error:
+
+			JUnit 4 was not found on your classpath. Please see the BUILD
+			file for more information.
+			]]>
+		</fail>
+    </sequential>
+
+	
+    <!-- Return some environmental info -->
+    <target name="environment-info" description="Gives some info on Environment and Compiler flags"
+        depends=""
+    >
+        <echo message=""/>
+        <echo message="Compile environment for ${ant.project.name}-${version} is:"/>
+        <echo message="show deprecation ${compiler.deprecation}"/>
+        <echo message="debug ${compiler.debug}"/>
+        <echo message="source ${compiler.source}, target ${compiler.target}"/>
+        <echo message="encoding ${compiler.encoding}"/>
+        <echo message="indexJars ${compiler.indexJars}"/>
+        <echo message="arg ${compiler.arg}"/>
+        <echo message=""/>
+        <echo message="Java environment: home at '${java.home}', version ${java.version}"/>
+        <echo message=""/>
+    </target>
+
+    <target name="clean" depends="provider-clean, demos-clean">
+        <delete dir="${folder.lib}"/>
+        <delete file="${ant.project.name}-demos.war"/>
+    </target>
+
+    <!-- Build source files -->
+    <target name="build" depends="provider, demos"/>
+
+    <target name="provider">
+        <mkdir dir="${folder.provider}/${folder.bin}"/>
+        <javac srcdir="${folder.provider}/src"
+            destDir="${folder.provider}/${folder.bin}"
+            includejavaruntime="true"
+            includeantruntime="false"
+            deprecation="${compiler.deprecation}"
+            debug="${compiler.debug}"
+            source="${compiler.source}"
+            target="${compiler.target}"
+            encoding="${compiler.encoding}"
+            failonerror="true"
+		>
+            <compilerarg line="${compiler.arg}"/>
+            <classpath>
+                <fileset dir="${folder.provider}/lib" includes="**/*.jar"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="provider-clean">
+        <delete dir="${folder.provider}/${folder.bin}"/>
+    </target>
+
+    <target name="demos" depends="provider">
+        <mkdir dir="${folder.demos}/${folder.bin}"/>
+        <javac srcdir="${folder.demos}/src"
+            destDir="${folder.demos}/${folder.bin}"
+            includejavaruntime="true"
+            includeantruntime="false"
+            deprecation="${compiler.deprecation}"
+            debug="${compiler.debug}"
+            source="${compiler.source}"
+            target="${compiler.target}"
+            encoding="${compiler.encoding}"
+            failonerror="true"
+		>
+            <compilerarg line="${compiler.arg}"/>
+            <classpath>
+                <fileset dir="${folder.provider}/lib" includes="**/*.jar"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="demos-clean">
+        <delete dir="${folder.demos}/${folder.bin}"/>
+    </target>
+
+    <!-- Generate deployment files -->
+    <target name="deploy"
+        depends="clean, build">
+        <mkdir dir="${folder.lib}"/>
+
+        <jar jarfile="${folder.lib}/${ant.project.name}-${version}.jar">
+            <fileset dir="${folder.provider}/${folder.bin}"/>
+            <fileset dir="${folder.provider}/src">
+                <exclude name="**/*.java"/>
+                <exclude name="**/package.html"/>
+            </fileset>
+        </jar>
+
+        <jar jarfile="${folder.lib}/${ant.project.name}-demos-${version}.jar">
+            <fileset dir="${folder.demos}/${folder.bin}"/>
+            <fileset dir="${folder.demos}/src">
+                <exclude name="**/*.java"/>
+                <exclude name="**/package.html"/>
+            </fileset>
+        </jar>
+
+        <copy todir="${folder.lib}">
+            <fileset dir="${folder.provider}/lib" includes="*.jar"/>
+        </copy>
+
+        <war destfile="${ant.project.name}-demos.war" webxml="${folder.demos}/web.xml">
+            <fileset dir="${folder.demos}/www"/>
+        </war>
+    </target>
+
+    <!-- Remove trailing white space in all source files -->
+    <target name="trim-whitespace" depends="environment-info">
+        <fileset id="trimfiles" dir=".">
+            <include name="BUILD"/>
+            <include name="LICENSE"/>
+            <include name="NOTICE"/>
+            <include name="README"/>
+            <include name="RELEASE-NOTES"/>
+            <include name="**/*.java"/>
+            <include name="**/*.html"/>
+            <include name="**/*.jsp"/>
+            <include name="**/*.txt"/>
+            <include name="**/*.properties"/>
+            <include name="**/*.xml"/>
+            <include name="**/*.bxml"/>
+            <include name="**/*.json"/>
+            <include name="**/*.groovy"/>
+            <include name="**/*.scala"/>
+        </fileset>
+        <replaceregexp match="[\t]" replace="    " flags="gm" byline="true">
+            <fileset refid="trimfiles"/>
+        </replaceregexp>
+        <replaceregexp match="[\t ]+$" replace="" flags="gm" byline="true">
+            <fileset refid="trimfiles"/>
+        </replaceregexp>
+    </target>
+
+</project>

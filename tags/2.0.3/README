@@ -1,0 +1,32 @@
+
+Welcome to Pivot-JFree
+======================
+
+Pivot-JFree is a provider of Apache Pivot for generating Charts using JFreeChart.
+
+
+Distribution JARs
+=================
+
+* pivot-jfree-<version>.jar
+
+
+Distribution WARs
+=================
+
+Pivot-JFree also includes a demo web archive.
+
+
+Dependencies
+============
+
+* Pivot requires Java 6 or greater.
+
+* JFreeChart 1.0.14 or higher.
+
+
+Documentation
+=============
+
+Pivot-JFree home page: http://code.google.com/a/apache-extras.org/p/pivot-jfree/
+Apache Pivot home page: http://pivot.apache.org/
