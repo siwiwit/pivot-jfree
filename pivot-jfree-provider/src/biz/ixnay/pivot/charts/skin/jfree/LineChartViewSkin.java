@@ -41,7 +41,7 @@ public class LineChartViewSkin extends JFreeChartViewSkin {
     private double categoryLabelRotation = 0;
 
     @Override
-	public ChartView.Element getElementAt(int x, int y) {
+    public ChartView.Element getElementAt(int x, int y) {
         ChartView.Element element = null;
 
         ChartEntity chartEntity = getChartEntityAt(x, y);
@@ -67,7 +67,7 @@ public class LineChartViewSkin extends JFreeChartViewSkin {
     }
 
     @Override
-	protected JFreeChart createChart() {
+    protected JFreeChart createChart() {
         LineChartView chartView = (LineChartView)getComponent();
 
         String title = chartView.getTitle();

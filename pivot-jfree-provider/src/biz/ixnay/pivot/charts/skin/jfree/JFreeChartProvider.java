@@ -32,7 +32,7 @@ import org.apache.pivot.wtk.Skin;
  */
 public class JFreeChartProvider implements Provider {
     @Override
-	public Class<? extends Skin> getSkinClass(Class<? extends ChartView> componentClass) {
+    public Class<? extends Skin> getSkinClass(Class<? extends ChartView> componentClass) {
         Class<? extends Skin> skinClass;
 
         if (componentClass == AreaChartView.class) {

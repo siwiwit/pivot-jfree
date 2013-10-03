@@ -35,42 +35,42 @@ public class IntervalSeriesDataset extends XYSeriesDataset implements IntervalXY
     }
 
     @Override
-	public Number getStartX(int seriesIndex, int itemIndex) {
+    public Number getStartX(int seriesIndex, int itemIndex) {
         return getX(seriesIndex, itemIndex);
     }
 
     @Override
-	public double getStartXValue(int seriesIndex, int itemIndex) {
+    public double getStartXValue(int seriesIndex, int itemIndex) {
         return getX(seriesIndex, itemIndex).doubleValue();
     }
 
     @Override
-	public Number getEndX(int seriesIndex, int itemIndex) {
+    public Number getEndX(int seriesIndex, int itemIndex) {
         return getXValue(seriesIndex, itemIndex) + getWidthValue(seriesIndex, itemIndex);
     }
 
     @Override
-	public double getEndXValue(int seriesIndex, int itemIndex) {
+    public double getEndXValue(int seriesIndex, int itemIndex) {
         return getEndX(seriesIndex, itemIndex).doubleValue();
     }
 
     @Override
-	public Number getStartY(int seriesIndex, int itemIndex) {
+    public Number getStartY(int seriesIndex, int itemIndex) {
         return getY(seriesIndex, itemIndex);
     }
 
     @Override
-	public double getStartYValue(int seriesIndex, int itemIndex) {
+    public double getStartYValue(int seriesIndex, int itemIndex) {
         return getY(seriesIndex, itemIndex).doubleValue();
     }
 
     @Override
-	public Number getEndY(int seriesIndex, int itemIndex) {
+    public Number getEndY(int seriesIndex, int itemIndex) {
         return getYValue(seriesIndex, itemIndex) + getWidthValue(seriesIndex, itemIndex);
     }
 
     @Override
-	public double getEndYValue(int seriesIndex, int itemIndex) {
+    public double getEndYValue(int seriesIndex, int itemIndex) {
         return getEndY(seriesIndex, itemIndex).doubleValue();
     }
 

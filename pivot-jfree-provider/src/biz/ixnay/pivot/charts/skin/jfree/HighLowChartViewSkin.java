@@ -34,7 +34,7 @@ public class HighLowChartViewSkin extends JFreeChartViewSkin {
     private boolean candlestick = false;
 
     @Override
-	public ChartView.Element getElementAt(int x, int y) {
+    public ChartView.Element getElementAt(int x, int y) {
         ChartView.Element element = null;
 
         ChartEntity chartEntity = getChartEntityAt(x, y);

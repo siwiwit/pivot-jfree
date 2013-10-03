@@ -51,23 +51,23 @@ public class PieSeriesDataset implements PieDataset {
     }
 
     @Override
-	public DatasetGroup getGroup() {
+    public DatasetGroup getGroup() {
         return datasetGroup;
     }
 
     @Override
-	public void setGroup(DatasetGroup datasetGroup) {
+    public void setGroup(DatasetGroup datasetGroup) {
         this.datasetGroup = datasetGroup;
     }
 
     @Override
-	public int getItemCount() {
+    public int getItemCount() {
         return categories.getLength();
     }
 
     @SuppressWarnings("rawtypes")
-	@Override
-	public int getIndex(Comparable categoryLabel) {
+    @Override
+    public int getIndex(Comparable categoryLabel) {
         if (categoryLabel == null) {
             throw new IllegalArgumentException("categoryLabel is null.");
         }
@@ -86,7 +86,7 @@ public class PieSeriesDataset implements PieDataset {
 
     @SuppressWarnings("rawtypes")
     @Override
-	public Comparable getKey(int categoryIndex) {
+    public Comparable getKey(int categoryIndex) {
         if (categoryIndex < 0
             || categoryIndex > categories.getLength() - 1) {
             throw new IndexOutOfBoundsException();
@@ -96,7 +96,7 @@ public class PieSeriesDataset implements PieDataset {
     }
 
     @Override
-	public List<String> getKeys() {
+    public List<String> getKeys() {
         java.util.ArrayList<String> columnKeys = new java.util.ArrayList<String>(categories.getLength());
         for (int i = 0, n = categories.getLength(); i < n; i++) {
             columnKeys.add(categories.get(i).getLabel());
@@ -106,7 +106,7 @@ public class PieSeriesDataset implements PieDataset {
     }
 
     @Override
-	public Number getValue(int categoryIndex) {
+    public Number getValue(int categoryIndex) {
         if (categoryIndex < 0
             || categoryIndex > categories.getLength() - 1) {
             throw new IndexOutOfBoundsException();
@@ -132,17 +132,17 @@ public class PieSeriesDataset implements PieDataset {
 
     @SuppressWarnings("rawtypes")
     @Override
-	public Number getValue(Comparable categoryLabel) {
+    public Number getValue(Comparable categoryLabel) {
         return getValue(getIndex(categoryLabel));
     }
 
     @Override
-	public void addChangeListener(DatasetChangeListener listener) {
+    public void addChangeListener(DatasetChangeListener listener) {
         // No-op
     }
 
     @Override
-	public void removeChangeListener(DatasetChangeListener listener) {
+    public void removeChangeListener(DatasetChangeListener listener) {
         // No-op
     }
 }
