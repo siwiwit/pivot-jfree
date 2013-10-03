@@ -40,7 +40,7 @@ public class AreaChartViewSkin extends JFreeChartViewSkin {
     private double categoryLabelRotation = 0;
 
     @Override
-	public ChartView.Element getElementAt(int x, int y) {
+    public ChartView.Element getElementAt(int x, int y) {
         ChartView.Element element = null;
 
         ChartEntity chartEntity = getChartEntityAt(x, y);

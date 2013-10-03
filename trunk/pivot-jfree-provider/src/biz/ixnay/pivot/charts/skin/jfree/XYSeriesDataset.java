@@ -54,30 +54,30 @@ public class XYSeriesDataset implements XYDataset {
     }
 
     @Override
-	public DatasetGroup getGroup() {
+    public DatasetGroup getGroup() {
         return datasetGroup;
     }
 
     @Override
-	public void setGroup(DatasetGroup datasetGroup) {
+    public void setGroup(DatasetGroup datasetGroup) {
         this.datasetGroup = datasetGroup;
     }
 
     @Override
-	public int getSeriesCount() {
+    public int getSeriesCount() {
         return chartData.getLength();
     }
 
     @SuppressWarnings("rawtypes")
     @Override
-	public Comparable getSeriesKey(int seriesIndex) {
+    public Comparable getSeriesKey(int seriesIndex) {
         Dictionary<String, ?> seriesDictionary = getSeriesDictionary(seriesIndex);
         return (String)seriesDictionary.get(seriesNameKey);
     }
 
     @SuppressWarnings("rawtypes")
     @Override
-	public int indexOf(Comparable seriesName) {
+    public int indexOf(Comparable seriesName) {
         if (seriesName == null) {
             throw new IllegalArgumentException("seriesName is null.");
         }
@@ -95,18 +95,18 @@ public class XYSeriesDataset implements XYDataset {
     }
 
     @Override
-	public DomainOrder getDomainOrder() {
+    public DomainOrder getDomainOrder() {
         return DomainOrder.NONE;
     }
 
     @Override
-	public int getItemCount(int seriesIndex) {
+    public int getItemCount(int seriesIndex) {
         List<?> series = getSeries(seriesIndex);
         return series.getLength();
     }
 
     @Override
-	public Number getX(int seriesIndex, int itemIndex) {
+    public Number getX(int seriesIndex, int itemIndex) {
         Dictionary<String, ?> itemDictionary = getItemDictionary(seriesIndex, itemIndex);
 
         Object value = itemDictionary.get(X_KEY);
@@ -122,12 +122,12 @@ public class XYSeriesDataset implements XYDataset {
     }
 
     @Override
-	public double getXValue(int seriesIndex, int itemIndex) {
+    public double getXValue(int seriesIndex, int itemIndex) {
         return getX(seriesIndex, itemIndex).doubleValue();
     }
 
     @Override
-	public Number getY(int seriesIndex, int itemIndex) {
+    public Number getY(int seriesIndex, int itemIndex) {
         Dictionary<String, ?> itemDictionary = getItemDictionary(seriesIndex, itemIndex);
 
         Object value = itemDictionary.get(Y_KEY);
@@ -143,7 +143,7 @@ public class XYSeriesDataset implements XYDataset {
     }
 
     @Override
-	public double getYValue(int seriesIndex, int itemIndex) {
+    public double getYValue(int seriesIndex, int itemIndex) {
         return getY(seriesIndex, itemIndex).doubleValue();
     }
 
@@ -191,12 +191,12 @@ public class XYSeriesDataset implements XYDataset {
     }
 
     @Override
-	public void addChangeListener(DatasetChangeListener listener) {
+    public void addChangeListener(DatasetChangeListener listener) {
         // No-op
     }
 
     @Override
-	public void removeChangeListener(DatasetChangeListener listener) {
+    public void removeChangeListener(DatasetChangeListener listener) {
         // No-op
     }
 }

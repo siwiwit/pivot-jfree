@@ -42,22 +42,22 @@ public abstract class JFreeChartViewSkin extends ChartViewSkin {
     private static final int PREFERRED_HEIGHT = 240;
 
     @Override
-	public int getPreferredWidth(int height) {
+    public int getPreferredWidth(int height) {
         return PREFERRED_WIDTH;
     }
 
     @Override
-	public int getPreferredHeight(int width) {
+    public int getPreferredHeight(int width) {
         return PREFERRED_HEIGHT;
     }
 
     @Override
-	public Dimensions getPreferredSize() {
+    public Dimensions getPreferredSize() {
         return new Dimensions(getPreferredWidth(-1), getPreferredHeight(-1));
     }
 
     @Override
-	public void paint(Graphics2D graphics) {
+    public void paint(Graphics2D graphics) {
         int width = getWidth();
         int height = getHeight();
 

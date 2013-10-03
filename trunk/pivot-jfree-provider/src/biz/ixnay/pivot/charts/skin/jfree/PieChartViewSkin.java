@@ -43,7 +43,7 @@ public class PieChartViewSkin extends JFreeChartViewSkin {
     private double depthFactor = 0.10d;
 
     @Override
-	public ChartView.Element getElementAt(int x, int y) {
+    public ChartView.Element getElementAt(int x, int y) {
         ChartView.Element element = null;
 
         ChartEntity chartEntity = getChartEntityAt(x, y);
@@ -59,7 +59,7 @@ public class PieChartViewSkin extends JFreeChartViewSkin {
     }
 
     @Override
-	protected JFreeChart createChart() {
+    protected JFreeChart createChart() {
         PieChartView chartView = (PieChartView)getComponent();
 
         String title = chartView.getTitle();

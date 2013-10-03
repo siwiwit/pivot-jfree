@@ -57,27 +57,27 @@ public class CategorySeriesDataset implements CategoryDataset {
     }
 
     @Override
-	public DatasetGroup getGroup() {
+    public DatasetGroup getGroup() {
         return datasetGroup;
     }
 
     @Override
-	public void setGroup(DatasetGroup datasetGroup) {
+    public void setGroup(DatasetGroup datasetGroup) {
         this.datasetGroup = datasetGroup;
     }
 
     @Override
-	public int getColumnCount() {
+    public int getColumnCount() {
         return categories.getLength();
     }
 
     @Override
-	public int getRowCount() {
+    public int getRowCount() {
         return chartData.getLength();
     }
 
     @SuppressWarnings("rawtypes")
-	@Override
+    @Override
     public int getColumnIndex(Comparable categoryLabel) {
         if (categoryLabel == null) {
             throw new IllegalArgumentException("categoryLabel is null.");
@@ -96,8 +96,8 @@ public class CategorySeriesDataset implements CategoryDataset {
     }
 
     @SuppressWarnings("rawtypes")
-	@Override
-	public Comparable getColumnKey(int categoryIndex) {
+    @Override
+    public Comparable getColumnKey(int categoryIndex) {
         if (categoryIndex < 0
             || categoryIndex > categories.getLength() - 1) {
             throw new IndexOutOfBoundsException();
@@ -107,7 +107,7 @@ public class CategorySeriesDataset implements CategoryDataset {
     }
 
     @Override
-	public java.util.List<String> getColumnKeys() {
+    public java.util.List<String> getColumnKeys() {
         java.util.ArrayList<String> columnKeys = new java.util.ArrayList<String>(categories.getLength());
         for (int i = 0, n = categories.getLength(); i < n; i++) {
             columnKeys.add(categories.get(i).getLabel());
@@ -117,8 +117,8 @@ public class CategorySeriesDataset implements CategoryDataset {
     }
 
     @SuppressWarnings("rawtypes")
-	@Override
-	public int getRowIndex(Comparable seriesName) {
+    @Override
+    public int getRowIndex(Comparable seriesName) {
         if (seriesName == null) {
             throw new IllegalArgumentException("seriesName is null.");
         }
@@ -136,15 +136,15 @@ public class CategorySeriesDataset implements CategoryDataset {
     }
 
     @SuppressWarnings("rawtypes")
-	@Override
-	public Comparable getRowKey(int seriesIndex) {
+    @Override
+    public Comparable getRowKey(int seriesIndex) {
         Dictionary<String, ?> seriesDictionary = getSeriesDictionary(seriesIndex);
         return (String)seriesDictionary.get(seriesNameKey);
     }
 
     @SuppressWarnings("rawtypes")
-	@Override
-	public java.util.List<Comparable> getRowKeys() {
+    @Override
+    public java.util.List<Comparable> getRowKeys() {
         java.util.ArrayList<Comparable> rowKeys = new java.util.ArrayList<Comparable>(chartData.getLength());
         for (int i = 0, n = chartData.getLength(); i < n; i++) {
             rowKeys.add(getRowKey(i));
@@ -154,7 +154,7 @@ public class CategorySeriesDataset implements CategoryDataset {
     }
 
     @Override
-	public Number getValue(int seriesIndex, int categoryIndex) {
+    public Number getValue(int seriesIndex, int categoryIndex) {
         Dictionary<String, ?> seriesDictionary = getSeriesDictionary(seriesIndex);
 
         if (categoryIndex < 0
@@ -174,8 +174,8 @@ public class CategorySeriesDataset implements CategoryDataset {
     }
 
     @SuppressWarnings("rawtypes")
-	@Override
-	public Number getValue(Comparable seriesName, Comparable categoryLabel) {
+    @Override
+    public Number getValue(Comparable seriesName, Comparable categoryLabel) {
         return getValue(getRowIndex(seriesName), getColumnIndex(categoryLabel));
     }
 
@@ -198,12 +198,12 @@ public class CategorySeriesDataset implements CategoryDataset {
     }
 
     @Override
-	public void addChangeListener(DatasetChangeListener listener) {
+    public void addChangeListener(DatasetChangeListener listener) {
         // No-op
     }
 
     @Override
-	public void removeChangeListener(DatasetChangeListener listener) {
+    public void removeChangeListener(DatasetChangeListener listener) {
         // No-op
     }
 

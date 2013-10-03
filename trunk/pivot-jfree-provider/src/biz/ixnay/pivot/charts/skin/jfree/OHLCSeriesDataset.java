@@ -66,7 +66,7 @@ public class OHLCSeriesDataset extends XYSeriesDataset implements OHLCDataset {
     }
 
     @Override
-	public Number getOpen(int seriesIndex, int itemIndex) {
+    public Number getOpen(int seriesIndex, int itemIndex) {
         Dictionary<String, ?> itemDictionary = getItemDictionary(seriesIndex, itemIndex);
 
         Object value = itemDictionary.get(OPEN_KEY);
@@ -82,12 +82,12 @@ public class OHLCSeriesDataset extends XYSeriesDataset implements OHLCDataset {
     }
 
     @Override
-	public double getOpenValue(int seriesIndex, int itemIndex) {
+    public double getOpenValue(int seriesIndex, int itemIndex) {
         return getOpen(seriesIndex, itemIndex).doubleValue();
     }
 
     @Override
-	public Number getHigh(int seriesIndex, int itemIndex) {
+    public Number getHigh(int seriesIndex, int itemIndex) {
         Dictionary<String, ?> itemDictionary = getItemDictionary(seriesIndex, itemIndex);
 
         Object value = itemDictionary.get(HIGH_KEY);
@@ -103,12 +103,12 @@ public class OHLCSeriesDataset extends XYSeriesDataset implements OHLCDataset {
     }
 
     @Override
-	public double getHighValue(int seriesIndex, int itemIndex) {
+    public double getHighValue(int seriesIndex, int itemIndex) {
         return getHigh(seriesIndex, itemIndex).doubleValue();
     }
 
     @Override
-	public Number getLow(int seriesIndex, int itemIndex) {
+    public Number getLow(int seriesIndex, int itemIndex) {
         Dictionary<String, ?> itemDictionary = getItemDictionary(seriesIndex, itemIndex);
 
         Object value = itemDictionary.get(LOW_KEY);
@@ -124,12 +124,12 @@ public class OHLCSeriesDataset extends XYSeriesDataset implements OHLCDataset {
     }
 
     @Override
-	public double getLowValue(int seriesIndex, int itemIndex) {
+    public double getLowValue(int seriesIndex, int itemIndex) {
         return getLow(seriesIndex, itemIndex).doubleValue();
     }
 
     @Override
-	public Number getClose(int seriesIndex, int itemIndex) {
+    public Number getClose(int seriesIndex, int itemIndex) {
         Dictionary<String, ?> itemDictionary = getItemDictionary(seriesIndex, itemIndex);
 
         Object value = itemDictionary.get(CLOSE_KEY);
@@ -145,12 +145,12 @@ public class OHLCSeriesDataset extends XYSeriesDataset implements OHLCDataset {
     }
 
     @Override
-	public double getCloseValue(int seriesIndex, int itemIndex) {
+    public double getCloseValue(int seriesIndex, int itemIndex) {
         return getClose(seriesIndex, itemIndex).doubleValue();
     }
 
     @Override
-	public Number getVolume(int seriesIndex, int itemIndex) {
+    public Number getVolume(int seriesIndex, int itemIndex) {
         Dictionary<String, ?> itemDictionary = getItemDictionary(seriesIndex, itemIndex);
 
         Object value = itemDictionary.get(VOLUME_KEY);
@@ -166,7 +166,7 @@ public class OHLCSeriesDataset extends XYSeriesDataset implements OHLCDataset {
     }
 
     @Override
-	public double getVolumeValue(int seriesIndex, int itemIndex) {
+    public double getVolumeValue(int seriesIndex, int itemIndex) {
         return getVolume(seriesIndex, itemIndex).doubleValue();
     }
 }
