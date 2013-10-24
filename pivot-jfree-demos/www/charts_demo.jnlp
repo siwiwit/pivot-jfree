@@ -59,7 +59,7 @@ limitations under the License.
 	<jar href="lib/pivot-jfree-2.0.3.jar"/>
 	<jar href="lib/pivot-jfree-demos-2.0.3.jar"/>
 
-	<jar href="lib/jcommon-1.0.20.jar"/>
+	<jar href="lib/jcommon-1.0.21.jar"/>
 	<jar href="lib/jfreechart-1.0.16.jar"/>
 </resources>
 
