@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Licensed under the Apache License, Version 2.0 (the "License"); you may not
+    use this file except in compliance with the License. You may obtain a copy
+    of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required
+    by applicable law or agreed to in writing, software distributed under the
+    License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS
+    OF ANY KIND, either express or implied. See the License for the specific
+    language governing permissions and limitations under the License. -->
+
+<TabPane styles="{tabOrientation:'vertical'}" xmlns:bxml="http://pivot.apache.org/bxml"
+    xmlns:content="org.apache.pivot.charts.content" xmlns:charts="org.apache.pivot.charts"
+    xmlns="org.apache.pivot.wtk" xmlns:wtkContent="org.apache.pivot.wtk.content" xmlns:collections="org.apache.pivot.collections">
+    <charts:HistogramView TabPane.tabData="Histogram"
+        title="Histogram Example" horizontalAxisLabel="Value"
+        verticalAxisLabel="Frequency" showLegend="false">
+        <componentMouseButtonListeners>
+            function mouseClick(component, button,
+            x, y, count) {
+            component.window.showSelectionMessage(component, x, y);
+            }
+        </componentMouseButtonListeners>
+        <valueMarkers>
+            <collections:ArrayList>
+                <content:ValueMarker label="Marker 1" value="0.5"></content:ValueMarker>
+            </collections:ArrayList>
+        </valueMarkers>
+        <content:HistogramSeries binCount="50" name="Data">
+            <wtkContent:ListItem text="0.024" />
+            <wtkContent:ListItem text="0.061" />
+            <wtkContent:ListItem text="0.091" />
+            <wtkContent:ListItem text="0.32" />
+            <wtkContent:ListItem text="0.368" />
+            <wtkContent:ListItem text="0.423" />
+            <wtkContent:ListItem text="0.471" />
+            <wtkContent:ListItem text="0.5" />
+            <wtkContent:ListItem text="0.525" />
+            <wtkContent:ListItem text="0.571" />
+            <wtkContent:ListItem text="0.571" />
+            <wtkContent:ListItem text="0.6" />
+            <wtkContent:ListItem text="0.6" />
+            <wtkContent:ListItem text="0.604" />
+            <wtkContent:ListItem text="0.642" />
+            <wtkContent:ListItem text="0.667" />
+            <wtkContent:ListItem text="0.672" />
+            <wtkContent:ListItem text="0.683" />
+            <wtkContent:ListItem text="0.686" />
+            <wtkContent:ListItem text="0.697" />
+            <wtkContent:ListItem text="0.7" />
+            <wtkContent:ListItem text="0.727" />
+            <wtkContent:ListItem text="0.727" />
+            <wtkContent:ListItem text="0.75" />
+            <wtkContent:ListItem text="0.751" />
+            <wtkContent:ListItem text="0.758" />
+            <wtkContent:ListItem text="0.758" />
+            <wtkContent:ListItem text="0.767" />
+            <wtkContent:ListItem text="0.769" />
+            <wtkContent:ListItem text="0.772" />
+            <wtkContent:ListItem text="0.773" />
+            <wtkContent:ListItem text="0.774" />
+            <wtkContent:ListItem text="0.776" />
+            <wtkContent:ListItem text="0.778" />
+            <wtkContent:ListItem text="0.793" />
+            <wtkContent:ListItem text="0.796" />
+            <wtkContent:ListItem text="0.814" />
+            <wtkContent:ListItem text="0.819" />
+            <wtkContent:ListItem text="0.82" />
+            <wtkContent:ListItem text="0.821" />
+            <wtkContent:ListItem text="0.824" />
+            <wtkContent:ListItem text="0.827" />
+            <wtkContent:ListItem text="0.827" />
+            <wtkContent:ListItem text="0.836" />
+            <wtkContent:ListItem text="0.847" />
+            <wtkContent:ListItem text="0.848" />
+            <wtkContent:ListItem text="0.85" />
+            <wtkContent:ListItem text="0.852" />
+            <wtkContent:ListItem text="0.857" />
+            <wtkContent:ListItem text="0.86" />
+            <wtkContent:ListItem text="0.862" />
+            <wtkContent:ListItem text="0.862" />
+            <wtkContent:ListItem text="0.88" />
+            <wtkContent:ListItem text="0.883" />
+            <wtkContent:ListItem text="0.885" />
+            <wtkContent:ListItem text="0.888" />
+            <wtkContent:ListItem text="0.888" />
+            <wtkContent:ListItem text="0.889" />
+            <wtkContent:ListItem text="0.893" />
+            <wtkContent:ListItem text="0.9" />
+            <wtkContent:ListItem text="0.901" />
+            <wtkContent:ListItem text="0.902" />
+            <wtkContent:ListItem text="0.903" />
+            <wtkContent:ListItem text="0.906" />
+            <wtkContent:ListItem text="0.909" />
+            <wtkContent:ListItem text="0.914" />
+            <wtkContent:ListItem text="0.917" />
+            <wtkContent:ListItem text="0.917" />
+            <wtkContent:ListItem text="0.919" />
+            <wtkContent:ListItem text="0.923" />
+            <wtkContent:ListItem text="0.927" />
+            <wtkContent:ListItem text="0.928" />
+            <wtkContent:ListItem text="0.931" />
+            <wtkContent:ListItem text="0.934" />
+            <wtkContent:ListItem text="0.936" />
+            <wtkContent:ListItem text="0.94" />
+            <wtkContent:ListItem text="0.94" />
+            <wtkContent:ListItem text="0.944" />
+            <wtkContent:ListItem text="0.948" />
+            <wtkContent:ListItem text="0.948" />
+            <wtkContent:ListItem text="0.95" />
+            <wtkContent:ListItem text="0.951" />
+            <wtkContent:ListItem text="0.951" />
+            <wtkContent:ListItem text="0.953" />
+            <wtkContent:ListItem text="0.957" />
+            <wtkContent:ListItem text="0.958" />
+            <wtkContent:ListItem text="0.958" />
+            <wtkContent:ListItem text="0.96" />
+            <wtkContent:ListItem text="0.963" />
+            <wtkContent:ListItem text="0.966" />
+            <wtkContent:ListItem text="0.969" />
+            <wtkContent:ListItem text="0.975" />
+            <wtkContent:ListItem text="0.979" />
+            <wtkContent:ListItem text="0.979" />
+            <wtkContent:ListItem text="0.981" />
+            <wtkContent:ListItem text="0.984" />
+            <wtkContent:ListItem text="0.988" />
+            <wtkContent:ListItem text="0.99" />
+            <wtkContent:ListItem text="0.991" />
+            <wtkContent:ListItem text="0.992" />
+            <wtkContent:ListItem text="0.992" />
+            <wtkContent:ListItem text="0.994" />
+            <wtkContent:ListItem text="0.995" />
+            <wtkContent:ListItem text="0.996" />
+            <wtkContent:ListItem text="1" />
+            <wtkContent:ListItem text="1" />
+            <wtkContent:ListItem text="1" />
+            <wtkContent:ListItem text="1" />
+            <wtkContent:ListItem text="1" />
+            <wtkContent:ListItem text="1" />
+            <wtkContent:ListItem text="1" />
+            <wtkContent:ListItem text="1" />
+            <wtkContent:ListItem text="1.003" />
+            <wtkContent:ListItem text="1.004" />
+            <wtkContent:ListItem text="1.006" />
+            <wtkContent:ListItem text="1.008" />
+            <wtkContent:ListItem text="1.008" />
+            <wtkContent:ListItem text="1.01" />
+            <wtkContent:ListItem text="1.012" />
+            <wtkContent:ListItem text="1.014" />
+            <wtkContent:ListItem text="1.016" />
+            <wtkContent:ListItem text="1.017" />
+            <wtkContent:ListItem text="1.017" />
+            <wtkContent:ListItem text="1.017" />
+            <wtkContent:ListItem text="1.018" />
+            <wtkContent:ListItem text="1.021" />
+            <wtkContent:ListItem text="1.022" />
+            <wtkContent:ListItem text="1.022" />
+            <wtkContent:ListItem text="1.023" />
+            <wtkContent:ListItem text="1.025" />
+            <wtkContent:ListItem text="1.026" />
+            <wtkContent:ListItem text="1.028" />
+            <wtkContent:ListItem text="1.029" />
+            <wtkContent:ListItem text="1.029" />
+            <wtkContent:ListItem text="1.029" />
+            <wtkContent:ListItem text="1.032" />
+            <wtkContent:ListItem text="1.032" />
+            <wtkContent:ListItem text="1.033" />
+            <wtkContent:ListItem text="1.033" />
+            <wtkContent:ListItem text="1.033" />
+            <wtkContent:ListItem text="1.039" />
+            <wtkContent:ListItem text="1.041" />
+            <wtkContent:ListItem text="1.041" />
+            <wtkContent:ListItem text="1.043" />
+            <wtkContent:ListItem text="1.043" />
+            <wtkContent:ListItem text="1.043" />
+            <wtkContent:ListItem text="1.044" />
+            <wtkContent:ListItem text="1.045" />
+            <wtkContent:ListItem text="1.048" />
+            <wtkContent:ListItem text="1.05" />
+            <wtkContent:ListItem text="1.051" />
+            <wtkContent:ListItem text="1.052" />
+            <wtkContent:ListItem text="1.053" />
+            <wtkContent:ListItem text="1.054" />
+            <wtkContent:ListItem text="1.055" />
+            <wtkContent:ListItem text="1.056" />
+            <wtkContent:ListItem text="1.057" />
+            <wtkContent:ListItem text="1.058" />
+            <wtkContent:ListItem text="1.063" />
+            <wtkContent:ListItem text="1.063" />
+            <wtkContent:ListItem text="1.065" />
+            <wtkContent:ListItem text="1.067" />
+            <wtkContent:ListItem text="1.071" />
+            <wtkContent:ListItem text="1.071" />
+            <wtkContent:ListItem text="1.072" />
+            <wtkContent:ListItem text="1.073" />
+            <wtkContent:ListItem text="1.073" />
+            <wtkContent:ListItem text="1.075" />
+            <wtkContent:ListItem text="1.076" />
+            <wtkContent:ListItem text="1.076" />
+            <wtkContent:ListItem text="1.078" />
+            <wtkContent:ListItem text="1.08" />
+            <wtkContent:ListItem text="1.086" />
+            <wtkContent:ListItem text="1.091" />
+            <wtkContent:ListItem text="1.091" />
+            <wtkContent:ListItem text="1.092" />
+            <wtkContent:ListItem text="1.093" />
+            <wtkContent:ListItem text="1.094" />
+            <wtkContent:ListItem text="1.096" />
+            <wtkContent:ListItem text="1.097" />
+            <wtkContent:ListItem text="1.099" />
+            <wtkContent:ListItem text="1.103" />
+            <wtkContent:ListItem text="1.105" />
+            <wtkContent:ListItem text="1.107" />
+            <wtkContent:ListItem text="1.108" />
+            <wtkContent:ListItem text="1.109" />
+            <wtkContent:ListItem text="1.11" />
+            <wtkContent:ListItem text="1.111" />
+            <wtkContent:ListItem text="1.111" />
+            <wtkContent:ListItem text="1.111" />
+            <wtkContent:ListItem text="1.111" />
+            <wtkContent:ListItem text="1.111" />
+            <wtkContent:ListItem text="1.112" />
+            <wtkContent:ListItem text="1.113" />
+            <wtkContent:ListItem text="1.117" />
+            <wtkContent:ListItem text="1.118" />
+            <wtkContent:ListItem text="1.122" />
+            <wtkContent:ListItem text="1.124" />
+            <wtkContent:ListItem text="1.128" />
+            <wtkContent:ListItem text="1.128" />
+            <wtkContent:ListItem text="1.133" />
+            <wtkContent:ListItem text="1.135" />
+            <wtkContent:ListItem text="1.14" />
+            <wtkContent:ListItem text="1.14" />
+            <wtkContent:ListItem text="1.141" />
+            <wtkContent:ListItem text="1.15" />
+            <wtkContent:ListItem text="1.154" />
+            <wtkContent:ListItem text="1.156" />
+            <wtkContent:ListItem text="1.157" />
+            <wtkContent:ListItem text="1.162" />
+            <wtkContent:ListItem text="1.164" />
+            <wtkContent:ListItem text="1.167" />
+            <wtkContent:ListItem text="1.167" />
+            <wtkContent:ListItem text="1.169" />
+            <wtkContent:ListItem text="1.171" />
+            <wtkContent:ListItem text="1.179" />
+            <wtkContent:ListItem text="1.181" />
+            <wtkContent:ListItem text="1.188" />
+            <wtkContent:ListItem text="1.189" />
+            <wtkContent:ListItem text="1.189" />
+            <wtkContent:ListItem text="1.193" />
+            <wtkContent:ListItem text="1.197" />
+            <wtkContent:ListItem text="1.198" />
+            <wtkContent:ListItem text="1.2" />
+            <wtkContent:ListItem text="1.221" />
+            <wtkContent:ListItem text="1.228" />
+        </content:HistogramSeries>
+    </charts:HistogramView>
+</TabPane>

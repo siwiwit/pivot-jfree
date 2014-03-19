@@ -19,10 +19,16 @@ package biz.ixnay.pivot.charts.skin.jfree;
 import org.apache.pivot.charts.AreaChartView;
 import org.apache.pivot.charts.BarChartView;
 import org.apache.pivot.charts.ChartView;
+import org.apache.pivot.charts.DialView;
 import org.apache.pivot.charts.HighLowChartView;
+import org.apache.pivot.charts.HistogramView;
 import org.apache.pivot.charts.LineChartView;
+import org.apache.pivot.charts.MeterView;
 import org.apache.pivot.charts.PieChartView;
+import org.apache.pivot.charts.PolarChartView;
 import org.apache.pivot.charts.Provider;
+import org.apache.pivot.charts.SpiderWebView;
+import org.apache.pivot.charts.ThermometerView;
 import org.apache.pivot.wtk.Skin;
 
 /**
@@ -39,12 +45,24 @@ public class JFreeChartProvider implements Provider {
             skinClass = AreaChartViewSkin.class;
         } else if (componentClass == BarChartView.class) {
             skinClass = BarChartViewSkin.class;
+        } else if (componentClass == DialView.class) {
+            skinClass = DialViewSkin.class;
         } else if (componentClass == HighLowChartView.class) {
             skinClass = HighLowChartViewSkin.class;
+        } else if (componentClass == HistogramView.class) {
+            skinClass = HistogramViewSkin.class;
         } else if (componentClass == LineChartView.class) {
             skinClass = LineChartViewSkin.class;
+        } else if (componentClass == MeterView.class) {
+            skinClass = MeterViewSkin.class;
         } else if (componentClass == PieChartView.class) {
             skinClass = PieChartViewSkin.class;
+        } else if (componentClass == PolarChartView.class) {
+            skinClass = PolarChartViewSkin.class;
+        } else if (componentClass == SpiderWebView.class) {
+            skinClass = SpiderWebViewSkin.class;
+        } else if (componentClass == ThermometerView.class) {
+            skinClass = ThermometerViewSkin.class;
         } else {
             throw new IllegalArgumentException();
         }

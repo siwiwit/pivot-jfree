@@ -17,6 +17,7 @@
 package biz.ixnay.pivot.demos.charts.jfree;
 
 import org.apache.pivot.charts.ChartView;
+import org.apache.pivot.charts.HistogramView.HistogramBin;
 import org.apache.pivot.collections.List;
 import org.apache.pivot.json.JSON;
 import org.apache.pivot.wtk.Prompt;
@@ -31,7 +32,10 @@ public class ChartsDemo extends Window {
             int elementIndex = element.getElementIndex();
 
             String elementLabel;
-            if (categories.getLength() > 0) {
+            if (element instanceof HistogramBin) {
+                elementLabel=element.toString();
+            }
+            else if (categories.getLength() > 0) {
                 elementLabel = "\"" + chartView.getCategories().get(elementIndex).getLabel() + "\"";
             } else {
                 elementLabel = Integer.toString(elementIndex);

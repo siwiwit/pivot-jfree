@@ -85,9 +85,9 @@ limitations under the License.
     </sequential>
 
 
-    <!-- Return some environmental info -->
-    <target name="environment-info" description="Gives some info on Environment and Compiler flags"
+    <target name="environment-info"
         depends=""
+        description="Gives some info on Environment and Compiler flags"
     >
         <echo message=""/>
         <echo message="Compile environment for ${ant.project.name}-${version} is:"/>
@@ -102,13 +102,18 @@ limitations under the License.
         <echo message=""/>
     </target>
 
-    <target name="clean" depends="provider-clean, demos-clean">
+    <target name="clean"
+        depends="provider-clean, demos-clean"
+        description="Clean the build artifacts"
+    >
         <delete dir="${folder.lib}"/>
         <delete file="${ant.project.name}-demos.war"/>
     </target>
 
-    <!-- Build source files -->
-    <target name="build" depends="provider, demos"/>
+    <target name="build"
+        depends="provider, demos"
+        description="Builds everything"
+    />
 
     <target name="provider">
         <mkdir dir="${folder.provider}/${folder.bin}"/>
@@ -125,7 +130,7 @@ limitations under the License.
         >
             <compilerarg line="${compiler.arg}"/>
             <classpath>
-                <fileset dir="${folder.provider}/lib" includes="**/*.jar"/>
+                <fileset dir="${folder.provider}/lib" includes="jfreechart-${jfree.version}.jar,jcommon-${jcommon.version}.jar,pivot-*-${pivot.version}.jar"/>
             </classpath>
         </javac>
     </target>
@@ -149,7 +154,7 @@ limitations under the License.
         >
             <compilerarg line="${compiler.arg}"/>
             <classpath>
-                <fileset dir="${folder.provider}/lib" includes="**/*.jar"/>
+                <fileset dir="${folder.provider}/lib" includes="jfreechart-${jfree.version}.jar,jcommon-${jcommon.version}.jar,pivot-*-${pivot.version}.jar"/>
             </classpath>
         </javac>
     </target>
@@ -158,9 +163,10 @@ limitations under the License.
         <delete dir="${folder.demos}/${folder.bin}"/>
     </target>
 
-    <!-- Generate deployment files -->
     <target name="deploy"
-        depends="clean, build">
+        depends="clean, build"
+        description="Generate the deployment files"
+    >
         <mkdir dir="${folder.lib}"/>
 
         <jar jarfile="${folder.lib}/${ant.project.name}-${version}.jar">
@@ -188,8 +194,10 @@ limitations under the License.
         </war>
     </target>
 
-    <!-- Remove trailing white space in all source files -->
-    <target name="trim-whitespace" depends="environment-info">
+    <target name="trim-whitespace"
+        depends="environment-info"
+        description="Remove trailing white space in all source files"
+    >
         <fileset id="trimfiles" dir=".">
             <include name="BUILD"/>
             <include name="LICENSE"/>
