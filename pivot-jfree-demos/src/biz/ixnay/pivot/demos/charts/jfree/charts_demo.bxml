@@ -27,6 +27,9 @@ limitations under the License.
             <bxml:include src="line_charts.bxml" TabPane.tabData="Line Chart"/>
             <bxml:include src="area_charts.bxml" TabPane.tabData="Area Chart"/>
             <bxml:include src="high_low_charts.bxml" TabPane.tabData="High Low Chart"/>
+            <bxml:include src="polar_chart.bxml" TabPane.tabData="Polar Chart"/>
+            <bxml:include src="spider_web.bxml" TabPane.tabData="Spider Web"/>
+            <bxml:include src="histogram.bxml" TabPane.tabData="Histogram"/>
         </TabPane>
     </Border>
 </jfree:ChartsDemo>
