@@ -23,7 +23,7 @@ import org.apache.pivot.charts.DialView;
 import org.apache.pivot.charts.HighLowChartView;
 import org.apache.pivot.charts.HistogramView;
 import org.apache.pivot.charts.LineChartView;
-import org.apache.pivot.charts.MeterView;
+// import org.apache.pivot.charts.MeterView;
 import org.apache.pivot.charts.PieChartView;
 import org.apache.pivot.charts.PolarChartView;
 import org.apache.pivot.charts.Provider;
@@ -53,8 +53,8 @@ public class JFreeChartProvider implements Provider {
             skinClass = HistogramViewSkin.class;
         } else if (componentClass == LineChartView.class) {
             skinClass = LineChartViewSkin.class;
-        } else if (componentClass == MeterView.class) {
-            skinClass = MeterViewSkin.class;
+        // } else if (componentClass == MeterView.class) {
+        //     skinClass = MeterViewSkin.class;
         } else if (componentClass == PieChartView.class) {
             skinClass = PieChartViewSkin.class;
         } else if (componentClass == PolarChartView.class) {
