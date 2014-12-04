@@ -20,11 +20,14 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.CategoryLabelPositions;
+import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.entity.CategoryItemEntity;
 import org.jfree.chart.entity.ChartEntity;
 import org.jfree.chart.entity.XYItemEntity;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.data.Range;
 import org.jfree.data.category.CategoryDataset;
 
 import org.apache.pivot.charts.ChartView;
@@ -39,6 +42,7 @@ import org.apache.pivot.collections.List;
 public class LineChartViewSkin extends JFreeChartViewSkin {
     private boolean threeDimensional = false;
     private double categoryLabelRotation = 0;
+    private Range rangeAxisRange = null;
 
     @Override
     public ChartView.Element getElementAt(int x, int y) {
@@ -96,10 +100,21 @@ public class LineChartViewSkin extends JFreeChartViewSkin {
             CategoryLabelPositions categoryLabelPositions =
                 CategoryLabelPositions.createUpRotationLabelPositions(categoryLabelRotation);
             domainAxis.setCategoryLabelPositions(categoryLabelPositions);
+
+            if (rangeAxisRange != null) {
+                ValueAxis rangeAxis = plot.getRangeAxis();
+                rangeAxis.setRange(rangeAxisRange);
+            }
         } else {
             chart = ChartFactory.createXYLineChart(title, horizontalAxisLabel, verticalAxisLabel,
                 new XYSeriesDataset(seriesNameKey, chartData),
                 PlotOrientation.VERTICAL, showLegend, false, false);
+
+            if (rangeAxisRange != null) {
+                XYPlot plot = (XYPlot)chart.getPlot();
+                ValueAxis rangeAxis = plot.getRangeAxis();
+                rangeAxis.setRange(rangeAxisRange);
+            }
         }
 
         return chart;
@@ -122,4 +137,23 @@ public class LineChartViewSkin extends JFreeChartViewSkin {
         this.categoryLabelRotation = categoryLabelRotation;
         repaintComponent();
     }
+
+    public void setRangeAxisLowerBound(double lower) {
+        this.rangeAxisRange = new Range(lower, getRangeAxisUpperBound());
+        repaintComponent();
+    }
+
+    public double getRangeAxisLowerBound() {
+        return rangeAxisRange == null ? 0.0d : rangeAxisRange.getLowerBound();
+    }
+
+    public void setRangeAxisUpperBound(double upper) {
+        this.rangeAxisRange = new Range(getRangeAxisLowerBound(), upper);
+        repaintComponent();
+    }
+
+    public double getRangeAxisUpperBound() {
+        return rangeAxisRange == null ? 1.0d : rangeAxisRange.getUpperBound();
+    }
+
 }
